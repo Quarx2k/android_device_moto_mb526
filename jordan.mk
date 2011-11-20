@@ -86,6 +86,7 @@ PRODUCT_PACKAGES += \
 	libLCML \
 	libOMX_Core \
 	libcamera \
+	libsmiledetect \
 	libaudiopolicy \
 	iwmulticall \
 	hostap \
