@@ -25,8 +25,8 @@
 #include <dirent.h>
 #include <math.h>
 #include <poll.h>
-#include <utils/Log.h>
 
+#include <cutils/log.h>
 #include <cutils/atomic.h>
 
 /*****************************************************************************/
@@ -50,11 +50,13 @@ start                                                             000009A4
 
  int destroySmileDetectEngine()
 {
+ LOGE(__func__);
 return 0 ;
 }
 
  int createSmileDetectEngine()
 {
+ LOGE(__func__);
 return 0 ;
 }
 
