@@ -15,10 +15,10 @@
  */
 
 /*
- * Quarx (c) 2011 stud for libsmiledetect.so
+ * Quarx (c) 2011 stud for libtpa.so
  */
 
-#define LOG_TAG "libtpa_core"
+#define LOG_TAG "libtpa"
 
 #include <fcntl.h>
 #include <errno.h>

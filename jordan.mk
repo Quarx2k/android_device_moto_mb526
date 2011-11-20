@@ -87,6 +87,9 @@ PRODUCT_PACKAGES += \
 	libOMX_Core \
 	libcamera \
 	libsmiledetect \
+	libtpa \
+	libtpa_core \
+	libmotodbgutils \
 	libaudiopolicy \
 	iwmulticall \
 	hostap \

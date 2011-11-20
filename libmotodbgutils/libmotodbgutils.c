@@ -15,7 +15,7 @@
  */
 
 /*
- * Quarx (c) 2011 stud for libmotodbgutils.so
+ * Quarx (c) 2011 stud for libsmiledetect.so
  */
 
 #define LOG_TAG "libmotodbgutils"

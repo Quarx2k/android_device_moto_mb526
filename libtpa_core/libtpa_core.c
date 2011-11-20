@@ -15,7 +15,7 @@
  */
 
 /*
- * Quarx (c) 2011 stud for libsmiledetect.so
+ * Quarx (c) 2011 stud for libtpa_core.so
  */
 
 #define LOG_TAG "libtpa_core"
