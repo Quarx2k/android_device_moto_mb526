@@ -3,8 +3,7 @@
 ######## BootMenu Script
 ######## Execute Post BootMenu
 
-
-export PATH=/sbin:/system/xbin:/system/bin
+export PATH=/system/xbin:/system/bin:/sbin
 
 ######## Main Script
 
@@ -21,8 +20,8 @@ mount -o remount,rw /dev/block/mmcblk1p21 /system
 ##################################################
 
 if [ -d /system/bootmenu/init.d ]; then
-  chmod 755 /system/bootmenu/init.d/*
-  run-parts /system/bootmenu/init.d/
+    chmod 755 /system/bootmenu/init.d/*
+    run-parts /system/bootmenu/init.d/
 fi
 
 # normal cleanup here (need fix in recovery first)
