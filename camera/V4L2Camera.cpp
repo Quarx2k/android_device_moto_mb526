@@ -166,7 +166,7 @@ int V4L2Camera::Open_media_device(const char *device)
 {
 
 	int ret = 0;
-	int index = 0;
+	int index = 4;
 	int i;
 	struct media_link_desc link;
 	struct media_links_enum links;
@@ -183,7 +183,7 @@ int V4L2Camera::Open_media_device(const char *device)
 	/*enumerate_all_entities*/
 	do {
 		mediaIn->entity[index].id = index | MEDIA_ENTITY_ID_FLAG_NEXT;
-		ret = ioctl(mediaIn->media_fd, MEDIA_IOC_ENUM_ENTITIES, &mediaIn->entity[index]);
+		ret = ioctl(mediaIn->media_fd, MEDIA_IOC_ENUM_ENTITIES, &mediaIn->entity[index]); // Wrong
 		if (ret < 0) {
 			break;
 		} else {
@@ -208,6 +208,7 @@ int V4L2Camera::Open_media_device(const char *device)
 	}while(ret==0);
 
 	if ((ret < 0) && (index <= 0)) {
+		LOGE("Camera Index: %d",index);
 		LOGE("Failed to enumerate entities ret val is %d",ret);
 		close(mediaIn->media_fd);
 		return -1;
@@ -219,7 +220,7 @@ int V4L2Camera::Open_media_device(const char *device)
 		links.entity = mediaIn->entity[index].id;
 		links.pads =(struct media_pad_desc *) malloc((sizeof( struct media_pad_desc)) * (mediaIn->entity[index].pads));
 		links.links = (struct media_link_desc *) malloc((sizeof(struct media_link_desc)) * mediaIn->entity[index].links);
-		ret = ioctl(mediaIn->media_fd, MEDIA_IOC_ENUM_LINKS, &links);
+		ret = ioctl(mediaIn->media_fd, MEDIA_IOC_ENUM_LINKS, &links);  // Wrong
 		if (ret < 0) {
 			LOGE("ERROR  while enumerating links/pads");
 			break;
@@ -241,6 +242,7 @@ int V4L2Camera::Open_media_device(const char *device)
 			}
 		}
 	}
+	LOGE("Input Source: %d",mediaIn->input_source);
 	if (mediaIn->input_source == 1)
 		input_v4l = mediaIn->mt9t111;
 	else if (mediaIn->input_source == 2)
@@ -258,7 +260,7 @@ int V4L2Camera::Open_media_device(const char *device)
 	link.sink.index = 0;
 	link.sink.flags = MEDIA_PAD_FLAG_INPUT;
 
-	ret = ioctl(mediaIn->media_fd, MEDIA_IOC_SETUP_LINK, &link);
+	ret = ioctl(mediaIn->media_fd, MEDIA_IOC_SETUP_LINK, &link); // Wrong
 	if(ret) {
 		LOGE("Failed to enable link bewteen entities");
 		close(mediaIn->media_fd);
