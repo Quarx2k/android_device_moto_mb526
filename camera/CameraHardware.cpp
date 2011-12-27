@@ -46,16 +46,26 @@ int version=0;
 namespace android {
 
 /* 29/12/10 : preview/picture size validation logic */
-const char CameraHardware::supportedPictureSizes [] = "640x480,352x288,320x240";
-const char CameraHardware::supportedPreviewSizes [] = "640x480,352x288,320x240";
+const char CameraHardware::supportedPictureSizes [] = "2592x1936,2592x1456,2048x1536,1600x1200,1280x960,640x480,320x240";
+const char CameraHardware::supportedPreviewSizes [] = "640x480,480x360,352x288,320x240,176x144";
 
-const supported_resolution CameraHardware::supportedPictureRes[] = {{640, 480} ,
-																	{352, 288} ,
-																	{320, 240} };
+const supported_resolution CameraHardware::supportedPictureRes[] = {
+{2592, 1936},
+{2592, 1456},
+{2048, 1536},
+{1600, 1200},
+{1280, 960},
+{640, 480},
+{320, 240},
+};
 
-const supported_resolution CameraHardware::supportedPreviewRes[] = {{640, 480} ,
-																	{352, 288} ,
-																	{320, 240} };
+const supported_resolution CameraHardware::supportedPreviewRes[] = {
+{640,480},
+{480, 360},
+{352, 288},
+{320, 240},
+{176, 144} 
+};
 
 
 CameraHardware::CameraHardware()
