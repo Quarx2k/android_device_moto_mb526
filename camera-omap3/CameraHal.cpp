@@ -67,14 +67,16 @@ typedef struct {
 } mapping_data_t;
 
 int CameraHal::camera_device = 0;
+int CameraHal::camera0_device = 0;
 wp<CameraHardwareInterface> CameraHal::singleton;
-const char CameraHal::supportedPictureSizes [] = "3264x2448,2560x2048,2048x1536,1600x1200,1280x1024,1152x968,1280x960,800x600,640x480,320x240";
-const char CameraHal::supportedPreviewSizes [] = "1280x720,992x560,864x480,800x480,720x576,720x480,768x576,640x480,320x240,352x288,240x160,176x144,128x96";
-const char CameraHal::supportedFPS [] = "33,30,25,24,20,15,10";
+const char CameraHal::supportedPictureSizes [] = "2592x1936,2592x1456,2048x1536,1600x1200,1280x960,640x480,320x240";
+const char CameraHal::supportedPreviewSizes [] = "640x480,480x360,352x288,320x240,176x144";
+const char CameraHal::supportedFPS [] = "30,25,24,20,15,10";
 const char CameraHal::supportedThumbnailSizes []= "512x384,320x240,80x60,0x0";
 const char CameraHal::PARAMS_DELIMITER []= ",";
 
 const supported_resolution CameraHal::supportedPictureRes[] = { {3264, 2448} , {2560, 2048} ,
+                                                     {2592,1936} , {2592, 1456} ,
                                                      {2048, 1536} , {1600, 1200} ,
                                                      {1280, 1024} , {1152, 968} ,
                                                      {1280, 960} , {800, 600},
@@ -1083,7 +1085,15 @@ int CameraHal::CameraCreate()
     LOG_FUNCTION_NAME
 
     camera_device = open(VIDEO_DEVICE, O_RDWR);
-    if (camera_device < 0) {
+
+    camera0_device = open(CAMERA0_DEVICE, O_RDWR);
+   // err = ioctl(camera0_device, 100, 1); //Reset write
+   // err = ioctl(camera0_device, 103, 24000000); //Set MCLK
+   // err = ioctl(camera0_device, 104, 1); //Avoid Power Enabl
+   // err = ioctl(camera0_device, 101, 0); //PowerDown write
+   // err = ioctl(camera0_device, 100, 0); //Reset write
+
+    if (camera_device < 0 ||  camera0_device < 0 ) {
         LOGE ("Could not open the camera device: %s",  strerror(errno) );
         goto exit;
     }
@@ -1100,10 +1110,15 @@ int CameraHal::CameraDestroy(bool destroyOverlay)
 {
     int err, buffer_count;
 
-    LOG_FUNCTION_NAME
+   err = ioctl(camera0_device, 101, 1);
+   err = ioctl(camera0_device, 102, 0);
+   err = ioctl(camera0_device, 105, 0);
 
+    LOG_FUNCTION_NAME
     close(camera_device);
+    close(camera0_device);
     camera_device = -1;
+    camera0_device = -1;
 
     if ((mOverlay != NULL) && (destroyOverlay)) {
         buffer_count = mOverlay->getBufferCount();
@@ -1139,6 +1154,12 @@ int CameraHal::CameraConfigure()
     struct v4l2_control vc;
     struct v4l2_streamparm parm;
 
+   err = ioctl(camera0_device, 103, 24000000); //Set MCLK
+   err = ioctl(camera0_device, 104, 1);
+   err = ioctl(camera0_device, 101, 0);
+   err = ioctl(camera0_device, 100, 0);
+   err = ioctl(camera0_device, 101, 1);
+
     LOG_FUNCTION_NAME
 
     mParameters.getPreviewSize(&w, &h);
@@ -1148,12 +1169,13 @@ int CameraHal::CameraConfigure()
     format.fmt.pix.width = w;
     format.fmt.pix.height = h;
     format.fmt.pix.pixelformat = PIXEL_FORMAT;
-
     err = ioctl(camera_device, VIDIOC_S_FMT, &format);
     if ( err < 0 ){
         LOGE ("Failed to set VIDIOC_S_FMT.");
         goto s_fmt_fail;
     }
+
+
 
     LOGI("CameraConfigure PreviewFormat: w=%d h=%d", format.fmt.pix.width, format.fmt.pix.height);
 
@@ -1200,7 +1222,6 @@ int CameraHal::CameraStart()
     struct v4l2_format format;
     enum v4l2_buf_type type;
     struct v4l2_requestbuffers creqbuf;
-
     LOG_FUNCTION_NAME
 
     nCameraBuffersQueued = 0;
@@ -1221,6 +1242,7 @@ int CameraHal::CameraStart()
     creqbuf.type   = V4L2_BUF_TYPE_VIDEO_CAPTURE;
     creqbuf.memory = V4L2_MEMORY_USERPTR;
     creqbuf.count  =  buffer_count ;
+
     if (ioctl(camera_device, VIDIOC_REQBUFS, &creqbuf) < 0) {
         LOGE ("VIDIOC_REQBUFS Failed. %s", strerror(errno));
         goto fail_reqbufs;
@@ -3452,14 +3474,14 @@ status_t CameraHal::setParameters(const CameraParameters &params)
 
     params.getPreviewSize(&w, &h);
     if ( validateSize(w, h, supportedPreviewRes, ARRAY_SIZE(supportedPreviewRes)) == false ) {
-        LOGE("Preview size not supported");
+        LOGE("Preview size not supported %d x %d", w, h);
         return -EINVAL;
     }
     LOGD("PreviewResolution by App %d x %d", w, h);
 
     params.getPictureSize(&w, &h);
     if (validateSize(w, h, supportedPictureRes, ARRAY_SIZE(supportedPictureRes)) == false ) {
-        LOGE("Picture size not supported");
+        LOGE("Picture size not supported %d, %d", w ,h);
         return -EINVAL;
     }
     LOGD("Picture Size by App %d x %d", w, h);
@@ -4734,9 +4756,25 @@ status_t CameraHal::sendCommand(int32_t cmd, int32_t arg1, int32_t arg2)
 }
 
 
-extern "C" sp<CameraHardwareInterface> openCameraHardware()
+static CameraInfo sCameraInfo[] = {
+    {
+        CAMERA_FACING_BACK,
+        0
+    }
+};
+
+extern "C" int HAL_getNumberOfCameras()
 {
-    LOGD("opening ti camera hal\n");
+    return 1;
+}
+
+extern "C" void HAL_getCameraInfo(int cameraId, struct CameraInfo* cameraInfo)
+{
+    memcpy(cameraInfo, &sCameraInfo[cameraId], sizeof(CameraInfo));
+}
+
+extern "C" sp<CameraHardwareInterface> HAL_openCameraHardware(int cameraID)
+{
     return CameraHal::createInstance();
 }
 

@@ -37,7 +37,7 @@
 #include <sys/stat.h>
 #include <utils/Log.h>
 #include <utils/threads.h>
-#include <linux/videodev2.h>
+#include <videodev2.h> //from moto kernel
 #include "binder/MemoryBase.h"
 #include "binder/MemoryHeapBase.h"
 #include <utils/threads.h>
@@ -91,11 +91,12 @@ extern "C" {
 
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
 
-#define VIDEO_DEVICE        "/dev/video5"
-#define MIN_WIDTH           128
-#define MIN_HEIGHT          96
-#define PICTURE_WIDTH   3264 /* 5mp - 2560. 8mp - 3280 */ /* Make sure it is a multiple of 16. */
-#define PICTURE_HEIGHT  2448 /* 5mp - 2048. 8mp - 2464 */ /* Make sure it is a multiple of 16. */
+#define VIDEO_DEVICE        "/dev/video3"
+#define CAMERA0_DEVICE        "/dev/camera0"
+#define MIN_WIDTH           320
+#define MIN_HEIGHT          240
+#define PICTURE_WIDTH   2592 /* 5mp - 2560. 8mp - 3280 */ /* Make sure it is a multiple of 16. */
+#define PICTURE_HEIGHT  1936 /* 5mp - 2048. 8mp - 2464 */ /* Make sure it is a multiple of 16. */
 #define PREVIEW_WIDTH 176
 #define PREVIEW_HEIGHT 144
 #define CAPTURE_8MP_WIDTH        3280
@@ -525,6 +526,7 @@ public:
 	int mfirstTime;
     static wp<CameraHardwareInterface> singleton;
     static int camera_device;
+    static int camera0_device;
     static const supported_resolution supportedPreviewRes[];
     static const supported_resolution supportedPictureRes[];
     static const char supportedPictureSizes[];
