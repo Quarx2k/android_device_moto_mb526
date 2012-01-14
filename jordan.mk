@@ -97,10 +97,13 @@ PRODUCT_PACKAGES += \
 	su
 
 # for jpeg hw encoder/decoder
-# PRODUCT_PACKAGES += libskiahw libOMX.TI.JPEG.Encoder libOMX.TI.JPEG.decoder
+PRODUCT_PACKAGES += libskiahw libOMX.TI.JPEG.Encoder libOMX.TI.JPEG.decoder
 
-# hw video prepost processor (require dsp lib)
-# PRODUCT_PACKAGES += libOMX.TI.VPP
+# video post processor
+PRODUCT_PACKAGES += libOMX.TI.VPP
+
+# Add DroidSSHd (dropbear) Management App - tpruvot/android_external_droidsshd @ github
+PRODUCT_PACKAGES += DroidSSHd
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
