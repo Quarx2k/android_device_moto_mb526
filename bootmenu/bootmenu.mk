@@ -103,6 +103,7 @@ PRODUCT_COPY_FILES += \
 	${bm_device}/bootmenu/recovery/sbin/mke2fs.bin:system/bootmenu/recovery/sbin/mke2fs.bin \
 	${bm_device}/bootmenu/recovery/sbin/tune2fs.bin:system/bootmenu/recovery/sbin/tune2fs \
 	${bm_device}/bootmenu/recovery/recovery.fstab:system/bootmenu/recovery/recovery.fstab \
+	${bm_device}/bootmenu/images/background.png:system/bootmenu/recovery/res/images/icon_bootmenu.png \
 
 # recovery tools
 PRODUCT_COPY_FILES += \
