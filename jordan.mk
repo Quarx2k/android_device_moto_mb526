@@ -107,6 +107,8 @@ PRODUCT_PACKAGES += libOMX.TI.VPP
 # Add DroidSSHd (dropbear) Management App - tpruvot/android_external_droidsshd @ github
 PRODUCT_PACKAGES += DroidSSHd
 
+PRODUCT_PACKAGES += RomUpdater
+
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 

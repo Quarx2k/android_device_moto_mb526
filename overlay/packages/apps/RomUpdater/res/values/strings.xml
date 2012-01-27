@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Custom Repository URL for nightly rom updates -->
+<resources>
+	<string name="app_name">Defy ROM Updater</string>
+	<string name="reposerver_url">http://epsy.ath.cx/romupdater/</string>
+	<string name="statserver_url">http://epsy.ath.cx/romupdater.php</string>
+</resources>
