@@ -1,0 +1,12 @@
+#!/system/bin/sh
+#
+# contributed by kholk & xslntx & 89luca89
+#
+
+#  Memory management
+#
+echo 2048 > /proc/sys/kernel/msgmni
+echo 64000 > /proc/sys/kernel/msgmax
+echo 524288000 > /proc/sys/kernel/shmmax
+echo 500 512000 64 2048 > /proc/sys/kernel/sem
+echo 10 > /proc/sys/fs/lease-break-time
