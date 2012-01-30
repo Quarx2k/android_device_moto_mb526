@@ -94,10 +94,10 @@
 -->
         <EncoderProfile quality="wide" fileFormat="mp4" duration="30">
             <Video codec="m4v"
-                   bitRate="3500000"
+                   bitRate="8500000"
                    width="848"
                    height="480"
-                   frameRate="24" />
+                   frameRate="25" />
 
             <Audio codec="aac"
                    bitRate="96000"
@@ -107,7 +107,7 @@
 
         <EncoderProfile quality="high" fileFormat="mp4" duration="30">
             <Video codec="m4v"
-                   bitRate="2000000"
+                   bitRate="6500000"
                    width="640"
                    height="480"
                    frameRate="25" />
@@ -132,10 +132,10 @@
 
         </EncoderProfile>
 
+        <ImageEncoding quality="100" />
         <ImageEncoding quality="90" />
         <ImageEncoding quality="80" />
-        <ImageEncoding quality="70" />
-        <ImageDecoding memCap="20000000" />
+        <ImageDecoding memCap="25000000" />
 
         <Camera previewFrameRate="30" />
 
@@ -157,7 +157,7 @@
         minFrameRate="1" maxFrameRate="30" />
 
     <VideoEncoderCap name="m4v" enabled="true"
-        minBitRate="64000" maxBitRate="4000000"
+        minBitRate="64000" maxBitRate="10000000"
         minFrameWidth="176" maxFrameWidth="1280"
         minFrameHeight="144" maxFrameHeight="720"
         minFrameRate="1" maxFrameRate="30" />
