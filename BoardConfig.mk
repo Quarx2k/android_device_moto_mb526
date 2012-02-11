@@ -118,7 +118,7 @@ TARGET_CUSTOM_RELEASETOOL := ./device/motorola/jordan/releasetools/squisher
 TARGET_NEEDS_MOTOROLA_HIJACK := true
 
 # In nighly builds only
-BOARD_HAVE_FM_RADIO := true
+#BOARD_HAVE_FM_RADIO := true
 ifdef BOARD_HAVE_FM_RADIO
 BOARD_FM_DEVICE := wl1271
 TARGET_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
