@@ -99,10 +99,10 @@ PRODUCT_PACKAGES += \
 	charge_only_mode
 
 # for jpeg hw encoder/decoder
-PRODUCT_PACKAGES += libskiahw libOMX.TI.JPEG.Encoder libOMX.TI.JPEG.decoder
+#PRODUCT_PACKAGES += libskiahw libOMX.TI.JPEG.Encoder libOMX.TI.JPEG.decoder
 
 # video post processor
-PRODUCT_PACKAGES += libOMX.TI.VPP
+#PRODUCT_PACKAGES += libOMX.TI.VPP
 
 # Add DroidSSHd (dropbear) Management App - tpruvot/android_external_droidsshd @ github
 PRODUCT_PACKAGES += DroidSSHd
