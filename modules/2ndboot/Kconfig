@@ -1,0 +1,4 @@
+config 2ndboot
+        tristate "2ndboot"
+        default m
+
