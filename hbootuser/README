@@ -1,0 +1,9 @@
+How to use it:
+Place to /system/2ndboot:  boot,kern,devtree,ramdisk,cmdline.
+after:
+~ # insmod /system/2ndboot.ko
+~ # mknod /dev/hbootctrl c `cat /proc/devices |grep hboot|awk '{print $1}'` 0
+~ # /system/bin/hbootuser
+:)
+
+kern is zImage.
