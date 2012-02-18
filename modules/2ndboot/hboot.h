@@ -35,9 +35,9 @@ struct hboot_buffer_req {
 #define MAX_BUFFERS_COUNT 8
 
 #define INVALID_BUFFER_HANDLE ((int)-1)
-#define HBOOT_ALLOCATE_BUFFER		0
-#define HBOOT_FREE_BUFFER		1
-#define HBOOT_SELECT_BUFFER		2
-#define HBOOT_BOOT			3
+#define HBOOT_ALLOCATE_BUFFER		10
+#define HBOOT_FREE_BUFFER		11
+#define HBOOT_SELECT_BUFFER		12
+#define HBOOT_BOOT			13
 #endif
 	

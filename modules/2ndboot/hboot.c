@@ -83,6 +83,7 @@ int hboot_boot(int handle) {
 //		l1_table = (uint32_t*)(((l1_mem >> 14) + 1) << 14);
 		printk("unaligned l1 table\n");
 		free_high_pages((void*)l1_mem, 2);
+		printk("l1_mem & 0x3fff\n");
 		return -EINVAL;
 	} else {
 		l1_table = (uint32_t*)l1_mem;
@@ -91,6 +92,7 @@ int hboot_boot(int handle) {
 
 	boot_entry = get_bootentry(&bootsize, handle);
 	if (boot_entry == NULL) {
+		printk("boot_entry == NULL\n");
 		return -EINVAL;
 	}
 	bootlist = get_bootlist(&listsize, handle);
@@ -150,6 +152,7 @@ static int hbootctrl_ioctl(struct inode *inode, struct file *file, unsigned int 
                         printk("Enter to HBOOT_ALLOCATE_BUFFER %d \n", cmd);
 			if (copy_from_user((void*)&buf_req, (void*)arg, sizeof(struct hboot_buffer_req)) != 0) {
 				printk(KERN_WARNING CTRL_DEVNAME ": failed to copy buffer request\n");
+		                printk("copy_from_user != 0 \n");
 				return -EINVAL;
 			}
 			ret = allocate_buffer(buf_req.tag, buf_req.type, buf_req.attrs, buf_req.size, buf_req.rest);
@@ -163,9 +166,11 @@ static int hbootctrl_ioctl(struct inode *inode, struct file *file, unsigned int 
                         printk("Enter to HBOOT_SELECT_BUFFER %d \n", cmd);
 			handle = (int)arg;
 			ret = select_buffer(handle);
+                        printk("ret of HBOOT_SELECT_BUFFER: %d \n", ret);
 			if (ret >= 0) {
 				file->f_pos = 0;
 			}
+ 			printk("ret of HBOOT_SELECT_BUFFER(break): %d \n", ret);
 			break;
 		case HBOOT_BOOT:
                         printk("Enter to HBOOT_BOOT %d \n", cmd);
@@ -177,6 +182,7 @@ static int hbootctrl_ioctl(struct inode *inode, struct file *file, unsigned int 
 			ret = -EINVAL;
 			break;
 	}
+        printk("switch end: %d \n", ret);
 	return ret;
 }
 

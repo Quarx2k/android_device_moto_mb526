@@ -102,8 +102,8 @@ int select_buffer(int buffer) {
 		perror("select_buffer error, ioctl");
                 printf("ret of select_buffer %d \n",ret);
 	}
-	return ret;
         printf("ret of select_buffer %d \n",ret);
+	return ret;
 }
 
 int fd2fd(int in, size_t size, int out) {
@@ -124,7 +124,49 @@ int fd2fd(int in, size_t size, int out) {
 }
 
 void boot(int handle) {
-	ioctl(ctrlfd, HBOOT_BOOT, handle);
+	int rv = ioctl(ctrlfd, HBOOT_BOOT, handle);
+	sleep(5);
+        printf("HBOOT_BOOT ioctl %d \n",rv);
+}
+
+int handle_file2(const char *fname, int tag, int *buf) {
+	int btype;
+	int battrs;
+	size_t filesize;
+	int fd;
+
+	if ((fd = try_file(fname, &filesize)) < 0) {
+		perror("open()");
+		return -1;
+	}
+
+//	if ((tag == 0) || (filesize < 4*4096)) {
+	if (tag == 0) {
+		btype = B_TYPE_PLAIN;
+	} else {
+		btype = B_TYPE_SCATTERED;
+	}
+	if (tag == 0) {
+		battrs = 0;
+	} else {
+		battrs = B_ATTR_VERIFY;
+	}
+	if ((*buf = allocate_buffer(tag, filesize, btype, battrs, 0)) == INVALID_BUFFER_HANDLE) {
+		fprintf(stderr, "failed to allocate buffer\n");
+		close(fd);
+		return -1;
+	}
+	select_buffer(*buf);
+        printf("select_buffer(*buf)\n");
+	if (fd2fd(fd, filesize, ctrlfd) < 0) {
+		fprintf(stderr, "failed to copy file contents\n");
+		close(fd);
+		free_buffer(*buf);
+		return -1;
+	}
+	printf("loaded file %s\n", fname);
+	close(fd);
+	return 0;
 }
 
 int handle_file(FILE *fp, int tag, int *buf) {
@@ -186,20 +228,20 @@ int handle_nand(FILE *fp, int tag, int *buf) {
 int main(int argc, char **argv) {
 	FILE *fp;
 	
-	if (argc != 2) {
+/*	if (argc != 2) {
 		fprintf(stderr, "Usage: %s <descriptor>\n", argv[0]);
 		return 1;
-	}
+	}*/
 	if (open_ctrl() < 0) {
 		perror("open(ctrl device)");
 		return 1;
 	}
-	if ((fp = fopen(argv[1], "r")) == NULL) {
+/*	if ((fp = fopen(argv[1], "r")) == NULL) {
 		perror("open(descriptor file)");
 		return 1;
-	}
+	} */
 	
-	while (buffers_count < MAX_BUFFERS_COUNT) {
+/*	while (buffers_count < MAX_BUFFERS_COUNT) {
 		int tag;
 		int ret;
 		char source[MAX_SOURCE_LEN+1];
@@ -235,16 +277,26 @@ int main(int argc, char **argv) {
 		}
 		fscanf(fp, "%*[^\n]");
 	}
-	fclose(fp);
+*/	
+        handle_file2("/system/2ndboot/boot", 0, &buffers[buffers_count++]);
+        handle_file2("/system/2ndboot/kern", 1, &buffers[buffers_count++]);
+        handle_file2("/system/2ndboot/ramdisk", 2, &buffers[buffers_count++]);
+        handle_file2("/system/2ndboot/devtree", 3, &buffers[buffers_count++]);
+        handle_file2("/system/2ndboot/cmdline", 4, &buffers[buffers_count++]);
+        loader = buffers[0];
+	printf("loader = %d\n", loader);
+      //  fclose(fp);
 	fp = NULL;
 	if (loader == INVALID_BUFFER_HANDLE) {
 		fprintf(stderr, "No loader provided\n");
 		goto out;
 	}
-	printf("Everything is loaded, booting\n");
+	printf("Everything is loaded, booting ^^\n");
+	sleep(5);
 	fflush(stdout);
 	boot(loader);
 out:
+        printf("out....\n");
 	if (fp) fclose(fp);
 	while (buffers_count-- > 0) {
 		if (buffers[buffers_count] != INVALID_BUFFER_HANDLE) {

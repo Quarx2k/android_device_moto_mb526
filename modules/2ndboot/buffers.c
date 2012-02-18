@@ -112,6 +112,7 @@ uint32_t get_high_mem(size_t size) {
 	uint32_t p;
 	while (1) {
 		p = (uint32_t)kmalloc(size, GFP_KERNEL);
+		printk("buffer.c: get_high_mem %x \n",p);
 		if (p == 0) {
 			return 0;
 		} else if (GOOD_ADDRESS(p)) {
@@ -300,7 +301,7 @@ int allocate_buffer(uint8_t tag, uint8_t type, uint8_t attrs, uint32_t bufsize, 
 	struct generic_buffer *buf;
 	void *data;
 	int handle;
-
+	printk("buffers.c: allocate_buffer\n");
 	switch (type) {
 		case B_TYPE_PLAIN:
 			data = allocate_plain_buffer(bufsize, rest);
@@ -333,7 +334,7 @@ int free_buffer(int handle) {
 	struct generic_buffer *buf;
 	uint8_t type;
 	void *data;
-
+	printk("buffers.c: free_buffer\n");
 	buf = get_buffer(handle);
 	if (buf == NULL) {
 		return -1;
@@ -348,9 +349,11 @@ int free_buffer(int handle) {
 }
 
 int select_buffer(int handle) {
+	printk("buffers.c: select_buffer, first spin\n");
 	spin_lock(&buffers.ctx_lock);
 	buffers.handle = handle;
 	spin_unlock(&buffers.ctx_lock);
+	printk("buffers.c: select_buffer, second spin\n");
 	return 0;
 }
 
