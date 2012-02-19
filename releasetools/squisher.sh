@@ -10,6 +10,10 @@ rm -f $REPACK/ota/system/app/RomManager.apk
 rm -f $REPACK/ota/system/app/FOTAKill.apk
 rm -f $REPACK/ota/system/xbin/irssi
 
+# Delete unused libs
+rm -f $REPACK/ota/system/lib/hw/*.goldfish.so
+rm -f $REPACK/ota/system/lib/hw/gralloc.default.so
+
 # these scripts are not required
 rm $REPACK/ota/system/etc/init.d/03firstboot
 rm $REPACK/ota/system/etc/init.d/04modules
@@ -17,7 +21,7 @@ rm $REPACK/ota/system/etc/init.d/04modules
 # add an empty script to prevent logcat errors (moto init.rc)
 touch $REPACK/ota/system/bin/mount_ext3.sh
 chmod +x $REPACK/ota/system/bin/mount_ext3.sh
-
+	
 mkdir -p $REPACK/ota/system/etc/terminfo/x
 cp $REPACK/ota/system/etc/terminfo/l/linux $REPACK/ota/system/etc/terminfo/x/xterm
 
