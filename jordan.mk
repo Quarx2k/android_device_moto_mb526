@@ -21,14 +21,7 @@
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
-# Model variant (DEFY_FROYO, DEFY_GINGER)
-BOARD_DEFY_MODEL := DEFY_FROYO
-
-ifeq ($(BOARD_DEFY_MODEL),DEFY_GINGER)
 $(call inherit-product-if-exists, vendor/motorola/jordan_plus/jordan-vendor.mk)
-else
-$(call inherit-product-if-exists, vendor/motorola/jordan/jordan-vendor.mk)
-endif
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -159,6 +152,6 @@ $(call inherit-product, build/target/product/full_base.mk)
 # Should be after the full_base include, which loads languages_full
 PRODUCT_LOCALES += hdpi
 
-PRODUCT_NAME := generic_jordan
-PRODUCT_DEVICE := MB525
+PRODUCT_NAME := generic_jordan_plus
+PRODUCT_DEVICE := MB526
 
