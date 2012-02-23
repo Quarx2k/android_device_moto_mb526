@@ -24,7 +24,11 @@ $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 ## (1) First, the most specific values, i.e. the aspects that are specific to GSM
 
 ## (2) Also get non-open-source files if available
+ifeq ($(BOARD_DEFY_MODEL),DEFY_GINGER)
+$(call inherit-product-if-exists, vendor/motorola/jordan_plus/jordan-vendor.mk)
+else
 $(call inherit-product-if-exists, vendor/motorola/jordan/jordan-vendor.mk)
+endif
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -99,15 +103,10 @@ PRODUCT_PACKAGES += \
 	charge_only_mode
 
 # for jpeg hw encoder/decoder
-#PRODUCT_PACKAGES += libskiahw libOMX.TI.JPEG.Encoder libOMX.TI.JPEG.decoder
+# PRODUCT_PACKAGES += libskiahw libOMX.TI.JPEG.Encoder libOMX.TI.JPEG.decoder
 
-# video post processor
-#PRODUCT_PACKAGES += libOMX.TI.VPP
-
-# Add DroidSSHd (dropbear) Management App - tpruvot/android_external_droidsshd @ github
-PRODUCT_PACKAGES += DroidSSHd
-
-PRODUCT_PACKAGES += RomUpdater
+# hw video prepost processor (require dsp lib)
+# PRODUCT_PACKAGES += libOMX.TI.VPP
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -116,9 +115,15 @@ PRODUCT_COPY_FILES += \
 	device/motorola/jordan/vold.fstab:system/etc/vold.fstab
 
 # copy all vendor (motorola) kernel modules to system/lib/modules
+ifeq ($(BOARD_DEFY_MODEL),DEFY_GINGER)
+PRODUCT_COPY_FILES += $(shell test -d vendor/motorola/jordan_plus/lib/modules &&  \
+	find vendor/motorola/jordan_plus/lib/modules -name '*.ko' \
+	-printf '%p:system/lib/modules/%f ')
+else
 PRODUCT_COPY_FILES += $(shell test -d vendor/motorola/jordan/lib/modules &&  \
 	find vendor/motorola/jordan/lib/modules -name '*.ko' \
 	-printf '%p:system/lib/modules/%f ')
+endif
 
 # copy all others kernel modules under the "modules" directory to system/lib/modules
 PRODUCT_COPY_FILES += $(shell test -d device/motorola/jordan/modules && \
