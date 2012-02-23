@@ -21,9 +21,9 @@
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
-## (1) First, the most specific values, i.e. the aspects that are specific to GSM
+# Model variant (DEFY_FROYO, DEFY_GINGER)
+BOARD_DEFY_MODEL := DEFY_FROYO
 
-## (2) Also get non-open-source files if available
 ifeq ($(BOARD_DEFY_MODEL),DEFY_GINGER)
 $(call inherit-product-if-exists, vendor/motorola/jordan_plus/jordan-vendor.mk)
 else

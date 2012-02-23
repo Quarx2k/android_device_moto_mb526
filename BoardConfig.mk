@@ -24,7 +24,7 @@
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
 
-# Model variant (DEFY_FROYO, DEFY_GINGER)
+# Model variant (DEFY_FROYO, DEFY_GINGER), also in jordan.mk
 BOARD_DEFY_MODEL := DEFY_FROYO
 
 USE_CAMERA_STUB := false
