@@ -21,14 +21,7 @@
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
-# Model variant (DEFY_FROYO, DEFY_GINGER)
-BOARD_DEFY_MODEL := DEFY_FROYO
-
-ifeq ($(BOARD_DEFY_MODEL),DEFY_GINGER)
-$(call inherit-product-if-exists, vendor/motorola/jordan_plus/jordan-vendor.mk)
-else
 $(call inherit-product-if-exists, vendor/motorola/jordan/jordan-vendor.mk)
-endif
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -43,8 +36,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.telephony.call_ring.delay=3000 \
 	ro.url.safetylegal=http://www.motorola.com/staticfiles/Support/legal/?model=MB525 \
 	ro.media.dec.jpeg.memcap=20000000 \
-	ro.media.dec.aud.wma.enabled=1 \
-	ro.media.dec.vid.wmv.enabled=1 \
 	dalvik.vm.lockprof.threshold=500 \
 	ro.kernel.android.checkjni=0 \
 	dalvik.vm.dexopt-data-only=1 \
@@ -63,7 +54,8 @@ PRODUCT_COPY_FILES += \
 	frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
 	frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 	frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-	frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+	frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+        packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml 
 
 PRODUCT_PACKAGES += \
 	librs_jni \
@@ -118,15 +110,9 @@ PRODUCT_COPY_FILES += \
 	device/motorola/jordan/vold.fstab:system/etc/vold.fstab
 
 # copy all vendor (motorola) kernel modules to system/lib/modules
-ifeq ($(BOARD_DEFY_MODEL),DEFY_GINGER)
-PRODUCT_COPY_FILES += $(shell test -d vendor/motorola/jordan_plus/lib/modules &&  \
-	find vendor/motorola/jordan_plus/lib/modules -name '*.ko' \
-	-printf '%p:system/lib/modules/%f ')
-else
 PRODUCT_COPY_FILES += $(shell test -d vendor/motorola/jordan/lib/modules &&  \
 	find vendor/motorola/jordan/lib/modules -name '*.ko' \
 	-printf '%p:system/lib/modules/%f ')
-endif
 
 # copy all others kernel modules under the "modules" directory to system/lib/modules
 PRODUCT_COPY_FILES += $(shell test -d device/motorola/jordan/modules && \
@@ -148,11 +134,6 @@ PRODUCT_PACKAGES += \
         LiveWallpapersPicker \
         MagicSmokeWallpapers \
         VisualizationWallpapers
-
-# Publish that we support the live wallpaper feature.
-PRODUCT_COPY_FILES += \
-        packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
-
 
 $(call inherit-product, build/target/product/full_base.mk)
 
