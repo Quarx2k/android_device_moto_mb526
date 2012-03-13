@@ -32,12 +32,6 @@ on post-fs
     chmod 0777 /tmp
     chown system shell /tmp
 
-# Restore good uid, mount as ramfs reset to root root 755
-    chown root system /mnt/asec
-    chmod 0755 /mnt/asec
-    chown root system /mnt/obb
-    chmod 0755 /mnt/obb
-
 # Configure kernel options
     # Enable automatic power control for EHCI USB IPC
     write /sys/devices/platform/ehci-omap.0/usb1/power/level auto
@@ -48,10 +42,6 @@ on post-fs
     write /proc/sys/vm/oom_dump_tasks 0
     write /proc/sys/fs/suid_dumpable 2
     # Power Management
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
-    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold 86
-    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate 46875
     write /sys/power/sr_vdd1_autocomp 1
     write /sys/power/sr_vdd2_autocomp 1
 # Change ownership for vibrators
@@ -156,12 +146,6 @@ on boot
     chown system system /sys/class/leds/lcd-backlight/als
     chown system system /sys/class/leds/lcd-backlight/pwm_mode
     chown system system /sys/class/leds/lcd-backlight/brightness
-    chown system system /sys/class/leds/keyboard-backlight/brightness
-    chown system system /sys/class/leds/button-backlight/brightness
-    chown system system /sys/class/leds/red/blink
-    chown system system /sys/class/leds/red/brightness
-    chown system system /sys/class/leds/green/brightness
-    chown system system /sys/class/leds/blue/brightness
     chown system system /sys/class/leds/usb/brightness
     chown system system /sys/class/leds/torch-flash/camera_strobe
     chown system system /sys/class/leds/torch-flash/flash_light

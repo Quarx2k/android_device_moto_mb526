@@ -8,6 +8,7 @@ VENDOR_TOP=$ANDROID_BUILD_TOP/vendor/motorola/jordan
 # Delete unwanted apps
 rm -f $REPACK/ota/system/app/RomManager.apk
 rm -f $REPACK/ota/system/app/FOTAKill.apk
+rm -f $REPACK/ota/system/app/Protips.apk
 rm -f $REPACK/ota/system/xbin/irssi
 
 # Delete unused libs
