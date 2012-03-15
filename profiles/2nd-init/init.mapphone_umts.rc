@@ -124,6 +124,7 @@ on boot
     chown system system /sys/class/leds/lcd-backlight/als
     chown system system /sys/class/leds/lcd-backlight/pwm_mode
     chown system system /sys/class/leds/lcd-backlight/brightness
+    chown system system /sys/class/leds/red/blink
     chown system system /sys/class/leds/usb/brightness
     chown system system /sys/class/leds/torch-flash/camera_strobe
     chown system system /sys/class/leds/torch-flash/flash_light
