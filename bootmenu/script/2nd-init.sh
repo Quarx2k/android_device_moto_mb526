@@ -11,6 +11,7 @@ rm -f /*.rc
 rm -f /*.sh
 rm -rf /osh
 rm -rf /preinstall
+rm -f /sbin/ueventd
 cp -f /system/bootmenu/2nd-init/* /
 ln -s /init /sbin/ueventd
 
