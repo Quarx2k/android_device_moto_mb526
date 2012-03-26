@@ -32,6 +32,7 @@
 #include <linux/cpu.h>
 #include <linux/console.h>
 #include <linux/vmalloc.h>
+#include <my.h>
 
 #include <asm/page.h>
 #include <asm/uaccess.h>
@@ -39,6 +40,8 @@
 #include <asm/system.h>
 #include <asm/sections.h>
 #include <asm/unistd.h>
+
+#define CTRL_DEVNAME "xkexec"
 
 MODULE_LICENSE("GPL");
 
@@ -133,7 +136,7 @@ static int do_kimage_alloc(struct kimage **rimage, unsigned long entry,
 	struct kimage *image;
 	unsigned long i;
 	int result;
-
+        printk("Enter to do_kimage_alloc\n");
 	/* Allocate a controlling structure */
 	result = -ENOMEM;
 	image = kzalloc(sizeof(*image), GFP_KERNEL);
@@ -238,7 +241,7 @@ static int kimage_normal_alloc(struct kimage **rimage, unsigned long entry,
 {
 	int result;
 	struct kimage *image;
-
+        printk("Enter to kimage_normal_alloc\n");
 	/* Allocate and initialize a controlling structure */
 	image = NULL;
 	result = do_kimage_alloc(&image, entry, nr_segments, segments);
@@ -283,7 +286,7 @@ static int kimage_crash_alloc(struct kimage **rimage, unsigned long entry,
 	int result;
 	struct kimage *image;
 	unsigned long i;
-
+        printk("Enter to kimage_crash_alloc\n");
 	image = NULL;
 	/* Verify we have a valid entry point */
 	if ((entry < crashk_res.start) || (entry > crashk_res.end)) {
@@ -350,7 +353,7 @@ static int kimage_is_destination_range(struct kimage *image,
 					unsigned long end)
 {
 	unsigned long i;
-
+        printk("Enter to kimage_is_destination_range\n");
 	for (i = 0; i < image->nr_segments; i++) {
 		unsigned long mstart, mend;
 
@@ -366,7 +369,7 @@ static int kimage_is_destination_range(struct kimage *image,
 static struct page *kimage_alloc_pages(gfp_t gfp_mask, unsigned int order)
 {
 	struct page *pages;
-
+        printk("Enter to kimage_alloc_pages\n");
 	pages = alloc_pages(gfp_mask, order);
 	if (pages) {
 		unsigned int count, i;
@@ -383,7 +386,7 @@ static struct page *kimage_alloc_pages(gfp_t gfp_mask, unsigned int order)
 static void kimage_free_pages(struct page *page)
 {
 	unsigned int order, count, i;
-
+        printk("Enter to  kimage_free_pages\n");
 	order = page_private(page);
 	count = 1 << order;
 	for (i = 0; i < count; i++)
@@ -394,7 +397,7 @@ static void kimage_free_pages(struct page *page)
 static void kimage_free_page_list(struct list_head *list)
 {
 	struct list_head *pos, *next;
-
+        printk("Enter to  kimage_free_page_list\n");
 	list_for_each_safe(pos, next, list) {
 		struct page *page;
 
@@ -423,7 +426,7 @@ static struct page *kimage_alloc_normal_control_pages(struct kimage *image,
 	struct list_head extra_pages;
 	struct page *pages;
 	unsigned int count;
-
+printk("Enter to *kimage_alloc_normal_control_pages\n");
 	count = 1 << order;
 	INIT_LIST_HEAD(&extra_pages);
 
@@ -496,7 +499,7 @@ static struct page *kimage_alloc_crash_control_pages(struct kimage *image,
 	 */
 	unsigned long hole_start, hole_end, size;
 	struct page *pages;
-
+printk("Enter to *kimage_alloc_crash_control_pages\n");
 	pages = NULL;
 	size = (1 << order) << PAGE_SHIFT;
 	hole_start = (image->control_page + (size - 1)) & ~(size - 1);
@@ -538,7 +541,7 @@ struct page *kimage_alloc_control_pages(struct kimage *image,
 					 unsigned int order)
 {
 	struct page *pages = NULL;
-
+printk("Enter to *kimage_alloc_control_pages\n");
 	switch (image->type) {
 	case KEXEC_TYPE_DEFAULT:
 		pages = kimage_alloc_normal_control_pages(image, order);
@@ -555,7 +558,7 @@ static int kimage_add_entry(struct kimage *image, kimage_entry_t entry)
 {
 	if (*image->entry != 0)
 		image->entry++;
-
+printk("Enter to kimage_add_entry\n");
 	if (image->entry == image->last_entry) {
 		kimage_entry_t *ind_page;
 		struct page *page;
@@ -629,13 +632,14 @@ static void kimage_terminate(struct kimage *image)
 static void kimage_free_entry(kimage_entry_t entry)
 {
 	struct page *page;
-
+printk("Enter to kimage_free_entry\n");
 	page = pfn_to_page(entry >> PAGE_SHIFT);
 	kimage_free_pages(page);
 }
 
 static void kimage_free(struct kimage *image)
 {
+printk("Enter to kimage_free\n");
 	kimage_entry_t *ptr, entry;
 	kimage_entry_t ind = 0;
 
@@ -859,7 +863,7 @@ static int kimage_load_crash_segment(struct kimage *image,
 	unsigned long ubytes, mbytes;
 	int result;
 	unsigned char __user *buf;
-
+	printk("kimage_load_crash_segment\n");
 	result = 0;
 	buf = segment->buf;
 	ubytes = segment->bufsz;
@@ -907,7 +911,7 @@ static int kimage_load_segment(struct kimage *image,
 				struct kexec_segment *segment)
 {
 	int result = -ENOMEM;
-
+	printk(" kimage_load_segment\n");
 	switch (image->type) {
 	case KEXEC_TYPE_DEFAULT:
 		result = kimage_load_normal_segment(image, segment);
@@ -949,7 +953,7 @@ asmlinkage long kexec_load(unsigned long entry, unsigned long nr_segments, struc
 {
 	struct kimage **dest_image, *image;
 	int result;
-
+	printk("kexec_load\n");
 	/* We only trust the superuser with rebooting the system. */
 	if (!capable(CAP_SYS_BOOT))
 		return -EPERM;
@@ -1080,6 +1084,7 @@ void crash_kexec(struct pt_regs *regs)
 	 * of memory the xchg(&kexec_crash_image) would be
 	 * sufficient.  But since I reuse the memory...
 	 */
+	printk("Enter to crash_kexec\n");
 	if (mutex_trylock(&kexec_mutex)) {
 		if (kexec_crash_image) {
 			struct pt_regs fixed_regs;
@@ -1417,6 +1422,7 @@ int kernel_kexec(void)
 	machine_kexec(kexec_image);
 
 #ifdef CONFIG_KEXEC_JUMP
+
 	if (kexec_image->preserve_context) {
 		sysdev_resume();
  Power_up_devices:
@@ -1440,6 +1446,53 @@ int kernel_kexec(void)
 	mutex_unlock(&kexec_mutex);
 	return error;
 }
+/* ***This is /dev/xkexec.. maybe usefull for future***
+
+static int xkexec_open(struct inode *inode, struct file *file);
+static int xkexec_release(struct inode *inode, struct file *file);
+static int xkexec_ioctl(struct inode *inode, struct file *file, unsigned int cmd, unsigned long arg);
+static int xkexec_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos);
+
+static struct file_operations xkexec_ops = {
+.owner = THIS_MODULE,
+.open = xkexec_open,
+.release = xkexec_release,
+.ioctl = xkexec_ioctl,
+.write = xkexec_write,
+
+};
+
+static int xkexec_open(struct inode *inode, struct file *file) {
+   printk("xkexec_open\n");
+	return 0;
+}
+
+static int xkexec_release(struct inode *inode, struct file *file) {
+   printk("xkexec_release\n");
+	return 0;
+}
+
+static int xkexec_ioctl(struct inode *inode, struct file *file, unsigned int cmd, unsigned long arg) {
+   int ret = 0;
+   struct xkexec_unload_req buf_req;
+   printk("CMD: %d \n", cmd);
+   switch (cmd) {
+		case 1:
+		        printk("ioctl 1\n");
+                        break;
+                default:
+			printk(KERN_INFO CTRL_DEVNAME ": unknown ioctl\n");
+			ret = -EINVAL;
+			break;
+   }
+	return 0;
+}
+
+static int xkexec_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos) {
+   printk("xkexec_write\n");
+	return 0;
+}
+*/
 
 unsigned long **find_sys_call_table(void)  {
     unsigned long **sctable;
@@ -1459,21 +1512,34 @@ unsigned long **find_sys_call_table(void)  {
 
 static int __init kexec_module_init(void)
 {
-//	sys_call_table=(void **)find_sys_call_table();
-//	if(sys_call_table==NULL) {
-//		printk(KERN_ERR "Cannot find the system call address\n"); 
-//		return -1;  // do not load
-//	}
+	int ret;
 
-	sys_call_table=(void **)0xc003d004;
+      /* if((ret = register_chrdev(0, CTRL_DEVNAME, &xkexec_ops)) >0 ) {
+	printk("Successfully registered dev: %s\n",CTRL_DEVNAME);
+       } */
 
+	sys_call_table=(void **)find_sys_call_table();
+        printk("Finded address %lx \n", find_sys_call_table());
+	if(sys_call_table==NULL) {
+		printk(KERN_ERR "Cannot find the system call address\n"); 
+		return -1;  // do not load
+	}
 	/* Set kexec_load() syscall. */
-	sys_call_table[__NR_kexec_load]=kexec_load;
+	if (ret = sys_call_table[__NR_kexec_load]=kexec_load > 0) ;
+	{        
+         printk("Set kexec_load() syscall OK\n");
+	}
 
 	/* Swap reboot() syscall and store original */
-	original_reboot=sys_call_table[__NR_reboot];
-	sys_call_table[__NR_reboot]=reboot;
+	if (ret = original_reboot=sys_call_table[__NR_reboot] > 0);
+	{        
+         printk("original_reboot=sys_call_table[__NR_reboot]\n");
+	}
 
+	if (sys_call_table[__NR_reboot]=reboot > 0);
+	{        
+         printk("sys_call_table[__NR_reboot]=reboot\n");
+	}
 	/* crash_notes_memory_init */
 	/* Allocate memory for saving cpu registers. */
 	crash_notes = alloc_percpu(note_buf_t);
