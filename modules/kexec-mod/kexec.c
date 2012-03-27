@@ -1516,14 +1516,20 @@ static int __init kexec_module_init(void)
 
       /* if((ret = register_chrdev(0, CTRL_DEVNAME, &xkexec_ops)) >0 ) {
 	printk("Successfully registered dev: %s\n",CTRL_DEVNAME);
-       } */
+       } 
 
 	sys_call_table=(void **)find_sys_call_table();
-        printk("Finded address %lx \n", find_sys_call_table());
 	if(sys_call_table==NULL) {
 		printk(KERN_ERR "Cannot find the system call address\n"); 
 		return -1;  // do not load
 	}
+	printk(KERN_INFO "kexec: Found sys_call_table at: %p\n", sys_call_table);*/
+
+	sys_call_table=(void **)0xc00370c4;  //SYS_CALL_TABLE := $(shell grep ' T sys_call_table$$' $(KDIR)/System.map | cut -f1 -d' ')
+
+	printk(KERN_INFO "kexec: Force sys_call_table at: %p\n", sys_call_table);
+
+
 	/* Set kexec_load() syscall. */
 	if (ret = sys_call_table[__NR_kexec_load]=kexec_load > 0) ;
 	{        
@@ -1540,6 +1546,8 @@ static int __init kexec_module_init(void)
 	{        
          printk("sys_call_table[__NR_reboot]=reboot\n");
 	}
+	sys_call_table[__NR_reboot]=reboot;
+
 	/* crash_notes_memory_init */
 	/* Allocate memory for saving cpu registers. */
 	crash_notes = alloc_percpu(note_buf_t);
