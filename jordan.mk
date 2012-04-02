@@ -110,7 +110,7 @@ PRODUCT_COPY_FILES += \
 	device/motorola/jordan/vold.fstab:system/etc/vold.fstab
 
 # copy all vendor (motorola) kernel modules to system/lib/modules
-PRODUCT_COPY_FILES += $(shell test -d vendor/motorola/jordan/lib/modules &&  \
+PRODUCT_COPY_FILES += $(shell test -d vendor/motorola/jordan_plus/lib/modules &&  \
 	find vendor/motorola/jordan_plus/lib/modules -name '*.ko' \
 	-printf '%p:system/lib/modules/%f ')
 
