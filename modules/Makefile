@@ -17,32 +17,24 @@ obj-m += usbled/
 PWD := $(shell pwd)
 
 .PHONY: clean
+#######################################################################################
 clean:
 	@find $(PWD) | grep "\\.o$$" | xargs rm -f
+	@find $(PWD) | grep "\\.ko$$" | xargs rm -f
 	@find $(PWD) | grep "\\.cmd$$" | xargs rm -f
 	@find $(PWD) | grep "\\.mod.c$$" | xargs rm -f
 	@find $(PWD) | grep "\\.order$$" | xargs rm -f
 	@find $(PWD) | grep "\\.tmp_versions$$" | xargs rm -rf
-
-EXTRA_CFLAGS += -I$(KERNEL_DIR)
-
-#all: verifypackages .depend $(TARGET)
-#######################################################################################
-# TODO: add some checks here...
-#
-verifypackages:
-ifeq ($(strip $(HAVE_GPL)),)
-	@echo "*** The GPL package does not seem to be present. You will need both the"
-	@echo "*** GPL package and the Non GPL package to execute this makefile."
-	exit 1
-endif
+	@cd $(PWD) && git checkout *.ko
 
 
-#######################################################################################
-# Builds the modules
-#
+EXTRA_CFLAGS += -I$(KERNEL_DIR) -DUTS_RELEASE=\\\"2.6.32.9\\\"
+
 .PHONY: all
-all: .depend modules
+#######################################################################################
+# Build the modules
+#######################################################################################
+all: modules
 modules:
 	pwd
 	@echo $@ EXTRA_CFLAGS = $(EXTRA_CFLAGS)
@@ -52,10 +44,4 @@ modules:
 	@find $(PWD) | grep "\\.mod.c$$" | xargs rm -f
 	@find $(PWD) | grep "\\.order$$" | xargs rm -f
 	@find $(PWD) | grep "\\.tmp_versions$$" | xargs rm -rf
-
-#######################################################################################
-# TODO: Causes the modules to get rebuilt
-#
-.depend:
-	@find $(PWD) | grep "\\.o$$" | xargs echo "To clean: "
 
