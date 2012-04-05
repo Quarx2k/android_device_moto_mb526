@@ -1,14 +1,14 @@
-system/bootmenu/script/2nd-system.sh
-system/bootmenu/config/multiboot_defaultpath.conf
-system/bootmenu/binary/multiboot
-system/bootmenu/2nd-system/fshook.functions.sh
-system/bootmenu/2nd-system/fshook.bootrecovery.sh
-system/bootmenu/2nd-system/init.hook.rc
-system/bootmenu/2nd-system/fshook.prevent_unmount.sh
-system/bootmenu/2nd-system/fshook.edit_devtree.sh
-system/bootmenu/2nd-system/fshook.config.sh
-system/bootmenu/2nd-system/fshook.postfshook.sh
-system/bootmenu/2nd-system/recovery/sbin/recoveryexit.sh
-system/bootmenu/2nd-system/recovery/res/images/icon_bootmenu.png
-system/bootmenu/2nd-system/recovery/res/images/icon_clockwork.png
+bootmenu/script/2nd-system.sh
+bootmenu/config/multiboot_defaultpath.conf
+bootmenu/binary/multiboot
+bootmenu/2nd-system/fshook.functions.sh
+bootmenu/2nd-system/fshook.bootrecovery.sh
+bootmenu/2nd-system/init.hook.rc
+bootmenu/2nd-system/fshook.prevent_unmount.sh
+bootmenu/2nd-system/fshook.edit_devtree.sh
+bootmenu/2nd-system/fshook.config.sh
+bootmenu/2nd-system/fshook.postfshook.sh
+bootmenu/2nd-system/recovery/sbin/recoveryexit.sh
+bootmenu/2nd-system/recovery/res/images/icon_bootmenu.png
+bootmenu/2nd-system/recovery/res/images/icon_clockwork.png
 
