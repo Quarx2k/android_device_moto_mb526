@@ -99,6 +99,9 @@ on post-fs
 
 on init
 
+    export PATH /sbin:/system/bin:/system/xbin
+    export LD_LIBRARY_PATH /system/lib
+
     # Install kernel modules
     insmod /system/lib/modules/netmux.ko
     insmod /system/lib/modules/netmux_linkdriver.ko
