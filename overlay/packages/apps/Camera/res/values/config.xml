@@ -25,6 +25,11 @@
     <string name="touchFocusParameter">mot-areas-to-focus</string>
     <bool name="touchFocusNeedsRect">true</bool>
 
+    <!-- FFC parameter filtering -->
+    <bool name="ffc_canFocus">false</bool>
+    <bool name="ffc_canZoom">false</bool>
+    <string name="ffc_supportedEffects">none</string>
+
     <!-- Autofocus on camcorder start -->
     <bool name="focusCamcorderAtStart">false</bool>
 </resources>
