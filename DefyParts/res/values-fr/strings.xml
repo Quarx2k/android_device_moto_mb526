@@ -27,11 +27,13 @@
     <string name="other_settings_title">Autres paramètres</string>
     <string name="compass_calibrate">Calibration boussole</string>
     <string name="baseband_switcher">Fréquences GSM (Baseband)</string>
-    <string name="kineto_support">Support des appels Wifi</string>
 
-    <string name="kineto_support_summary">Activer l\'application T-Mobile pour les appels téléphoniques via Wifi.</string>
-    <string name="kineto_reboot_prompt_title">Nécessite un redémarrage</string>
-    <string name="kineto_reboot_prompt_message">Pour activer ou désactiver l\'application, un redémarrage est nécessaire.\n\nRedémarrer maintenant?</string>
+    <string name="kineto_support">Support des appels Wifi</string>
+    <string name="kineto_support_summary">Activer l\'application T-Mobile pour les appels téléphoniques via Wifi</string>
+    
+    <string name="reboot_prompt_message">Pour activer ou désactiver l\'application, un redémarrage est nécessaire.\n\nRedémarrer maintenant ?</string>
+    <string name="reboot_prompt_title">Nécessite un redémarrage</string>
+
     <string name="yes">Oui</string>
     <string name="no">Non</string>
 
