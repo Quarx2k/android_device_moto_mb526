@@ -7,9 +7,9 @@
 echo "JORDAN SQUISHER:"
 echo "================"
 
-DEVICE_OUT=$ANDROID_BUILD_TOP/out/target/product/jordan
-DEVICE_TOP=$ANDROID_BUILD_TOP/device/motorola/jordan
-VENDOR_TOP=$ANDROID_BUILD_TOP/vendor/motorola/jordan
+DEVICE_OUT=$ANDROID_BUILD_TOP/out/target/product/jordan_plus
+DEVICE_TOP=$ANDROID_BUILD_TOP/device/motorola/jordan_plus
+VENDOR_TOP=$ANDROID_BUILD_TOP/vendor/motorola/jordan_plus
 
 OUT_TARGET_HOST=`uname -a | grep Darwin`
 if [ -z "$OUT_TARGET_HOST" ]
@@ -137,9 +137,9 @@ $SED -i \
 	$REPACK/ota/system/build.prop
 
 # Include device specific script
-if [ -f $ANDROID_BUILD_TOP/device/motorola/jordan/releasetools/squisher.sh ]; then
+if [ -f $ANDROID_BUILD_TOP/device/motorola/jordan_plus/releasetools/squisher.sh ]; then
 	echo "squisher.sh..."
-	. $ANDROID_BUILD_TOP/device/motorola/jordan/releasetools/squisher.sh
+	. $ANDROID_BUILD_TOP/device/motorola/jordan_plus/releasetools/squisher.sh
 fi
 
 # Delete unnecessary binaries
@@ -183,7 +183,7 @@ if [ -z "$CYANOGEN_NIGHTLY" ]; then
 	OUTFILE=$OUT/update-cm-$MODVERSION-signed.zip
 else
 	OUTFILE=$OUT/update-squished.zip
-	if [ "$TARGET_PRODUCT" = "cyanogen_jordan" ]; then
+	if [ "$TARGET_PRODUCT" = "cyanogen_jordan_plus" ]; then
 		REALDATE=`sed -n -r 's/ro.build.version.incremental=//p' $REPACK/ota/system/build.prop`
 		MODVERSION=`sed -n -e'/ro\.modversion/s/^.*CyanogenMod-//p' $REPACK/ota/system/build.prop`
 		#MODVERSION=`echo $MODVERSION | sed -r 's/[0-9]{8}/'$REALDATE'/'`

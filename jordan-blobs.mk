@@ -12,48 +12,48 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-DEVICE_PREBUILT := device/motorola/jordan/prebuilt
+DEVICE_PREBUILT := device/motorola/jordan_plus/prebuilt
 
 #key layouts, names must fit the ones in /proc/bus/input/devices, qwerty.kl is the fallback one.
 PRODUCT_COPY_FILES += \
-	device/motorola/jordan/prebuilt/usr/qwerty.kl:system/usr/keylayout/qwerty.kl \
-	device/motorola/jordan/prebuilt/usr/qwerty.kl:system/usr/keylayout/qtouch-touchscreen.kl \
-	device/motorola/jordan/prebuilt/usr/keypad.kl:system/usr/keylayout/sholes-keypad.kl \
-	device/motorola/jordan/prebuilt/usr/keypad.kl:system/usr/keylayout/umts_jordan-keypad.kl \
-	device/motorola/jordan/prebuilt/usr/cpcap.kl:system/usr/keylayout/cpcap-key.kl \
+	device/motorola/jordan_plus/prebuilt/usr/qwerty.kl:system/usr/keylayout/qwerty.kl \
+	device/motorola/jordan_plus/prebuilt/usr/qwerty.kl:system/usr/keylayout/qtouch-touchscreen.kl \
+	device/motorola/jordan_plus/prebuilt/usr/keypad.kl:system/usr/keylayout/sholes-keypad.kl \
+	device/motorola/jordan_plus/prebuilt/usr/keypad.kl:system/usr/keylayout/umts_jordan-keypad.kl \
+	device/motorola/jordan_plus/prebuilt/usr/cpcap.kl:system/usr/keylayout/cpcap-key.kl \
 
 #etc
 PRODUCT_COPY_FILES += \
-	device/motorola/jordan/bootmenu/recovery/recovery.fstab:system/etc/recovery.fstab \
-	device/motorola/jordan/prebuilt/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
-	device/motorola/jordan/prebuilt/etc/init.d/03adbd:system/etc/init.d/03adbd \
-	device/motorola/jordan/prebuilt/etc/init.d/05mountsd:system/etc/init.d/05mountsd \
-	device/motorola/jordan/prebuilt/etc/init.d/08backlight:system/etc/init.d/08backlight \
-	device/motorola/jordan/prebuilt/etc/init.d/10gpiofix:system/etc/init.d/10gpiofix \
-	device/motorola/jordan/prebuilt/etc/init.d/80kineto:system/etc/init.d/80kineto \
-	device/motorola/jordan/prebuilt/etc/init.d/90multitouch:system/etc/init.d/90multitouch \
-	device/motorola/jordan/prebuilt/etc/profile:system/etc/profile \
-	device/motorola/jordan/prebuilt/etc/sysctl.conf:system/etc/sysctl.conf \
-	device/motorola/jordan/prebuilt/etc/busybox.fstab:system/etc/fstab \
-	device/motorola/jordan/prebuilt/etc/wifi/dnsmasq.conf:system/etc/wifi/dnsmasq.conf \
-	device/motorola/jordan/prebuilt/etc/wifi/tiwlan.ini:system/etc/wifi/tiwlan.ini \
-	device/motorola/jordan/prebuilt/etc/wifi/tiwlan_ap.ini:system/etc/wifi/tiwlan_ap.ini \
-	device/motorola/jordan/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-	device/motorola/jordan/prebuilt/etc/gpsconfig.xml:system/etc/gpsconfig.xml \
-	device/motorola/jordan/prebuilt/etc/location.cfg:system/etc/location.cfg \
-	device/motorola/jordan/media_profiles.xml:system/etc/media_profiles.xml \
-	device/motorola/jordan/modules/modules.alias:system/lib/modules/modules.alias \
-	device/motorola/jordan/modules/modules.dep:system/lib/modules/modules.dep \
+	device/motorola/jordan_plus/bootmenu/recovery/recovery.fstab:system/etc/recovery.fstab \
+	device/motorola/jordan_plus/prebuilt/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
+	device/motorola/jordan_plus/prebuilt/etc/init.d/03adbd:system/etc/init.d/03adbd \
+	device/motorola/jordan_plus/prebuilt/etc/init.d/05mountsd:system/etc/init.d/05mountsd \
+	device/motorola/jordan_plus/prebuilt/etc/init.d/08backlight:system/etc/init.d/08backlight \
+	device/motorola/jordan_plus/prebuilt/etc/init.d/10gpiofix:system/etc/init.d/10gpiofix \
+	device/motorola/jordan_plus/prebuilt/etc/init.d/80kineto:system/etc/init.d/80kineto \
+	device/motorola/jordan_plus/prebuilt/etc/init.d/90multitouch:system/etc/init.d/90multitouch \
+	device/motorola/jordan_plus/prebuilt/etc/profile:system/etc/profile \
+	device/motorola/jordan_plus/prebuilt/etc/sysctl.conf:system/etc/sysctl.conf \
+	device/motorola/jordan_plus/prebuilt/etc/busybox.fstab:system/etc/fstab \
+	device/motorola/jordan_plus/prebuilt/etc/wifi/dnsmasq.conf:system/etc/wifi/dnsmasq.conf \
+	device/motorola/jordan_plus/prebuilt/etc/wifi/tiwlan.ini:system/etc/wifi/tiwlan.ini \
+	device/motorola/jordan_plus/prebuilt/etc/wifi/tiwlan_ap.ini:system/etc/wifi/tiwlan_ap.ini \
+	device/motorola/jordan_plus/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+	device/motorola/jordan_plus/prebuilt/etc/gpsconfig.xml:system/etc/gpsconfig.xml \
+	device/motorola/jordan_plus/prebuilt/etc/location.cfg:system/etc/location.cfg \
+	device/motorola/jordan_plus/media_profiles.xml:system/etc/media_profiles.xml \
+	device/motorola/jordan_plus/modules/modules.alias:system/lib/modules/modules.alias \
+	device/motorola/jordan_plus/modules/modules.dep:system/lib/modules/modules.dep \
 
 # List of files to keep against rom upgrade (baseband config, overclock settings)
 ifdef CYANOGEN_RELEASE
-    PRODUCT_COPY_FILES += device/motorola/jordan/releasetools/custom_backup_release.txt:system/etc/custom_backup_list.txt
+    PRODUCT_COPY_FILES += device/motorola/jordan_plus/releasetools/custom_backup_release.txt:system/etc/custom_backup_list.txt
 else
-    PRODUCT_COPY_FILES += device/motorola/jordan/releasetools/custom_backup_list.txt:system/etc/custom_backup_list.txt
+    PRODUCT_COPY_FILES += device/motorola/jordan_plus/releasetools/custom_backup_list.txt:system/etc/custom_backup_list.txt
 endif
 
 # App
 PRODUCT_COPY_FILES += \
-	device/motorola/jordan/prebuilt/app/basebandswitcherV4.0.apk:system/app/basebandswitcherV4.0.apk \
+	device/motorola/jordan_plus/prebuilt/app/basebandswitcherV4.0.apk:system/app/basebandswitcherV4.0.apk \
 
 #end of jordan-blobs.mk

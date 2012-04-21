@@ -12,7 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
+ifeq ($(BOARD_DEFY_MODEL),DEFY_GINGER)
 ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),jordan)
 include $(all-subdir-makefiles)
+endif
 endif

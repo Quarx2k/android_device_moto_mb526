@@ -1,5 +1,5 @@
 # Required tools and blobs for bootmenu
-bm_device = device/motorola/jordan
+bm_device = device/motorola/jordan_plus
 
 PRODUCT_PACKAGES += \
 	bootmenu \
@@ -54,8 +54,8 @@ PRODUCT_COPY_FILES += \
 	${bm_device}/bootmenu/binary/lsof.static:system/bootmenu/binary/lsof \
 	${bm_device}/bootmenu/binary/2nd-boot:system/bootmenu/binary/2nd-boot \
 	${bm_device}/bootmenu/binary/adbd.root:system/bootmenu/binary/adbd.root \
-	out/target/product/jordan/root/sbin/adbd:system/bootmenu/binary/adbd \
-	out/target/product/jordan/utilities/busybox:system/bootmenu/binary/busybox \
+	out/target/product/jordan_plus/root/sbin/adbd:system/bootmenu/binary/adbd \
+	out/target/product/jordan_plus/utilities/busybox:system/bootmenu/binary/busybox \
 
 # images
 PRODUCT_COPY_FILES += \
@@ -108,5 +108,5 @@ PRODUCT_COPY_FILES += \
 
 # recovery tools
 PRODUCT_COPY_FILES += \
-	out/target/product/jordan/recovery/root/sbin/tune2fs:system/bootmenu/recovery/sbin/tune2fs
+	out/target/product/jordan_plus/recovery/root/sbin/tune2fs:system/bootmenu/recovery/sbin/tune2fs
 

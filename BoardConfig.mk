@@ -64,11 +64,11 @@ WIFI_DRIVER_FW_AP_PATH      := "/system/etc/wifi/fw_tiwlan_ap.bin"
 WPA_SUPPL_APPROX_USE_RSSI   := true
 
 BOARD_USE_YUV422I_DEFAULT_COLORFORMAT := true
-BOARD_EGL_CFG := device/motorola/jordan/egl.cfg
-BOARD_CUSTOM_USB_CONTROLLER := ../../device/motorola/jordan/UsbController.cpp
+BOARD_EGL_CFG := device/motorola/jordan_plus/egl.cfg
+BOARD_CUSTOM_USB_CONTROLLER := ../../device/motorola/jordan_plus/UsbController.cpp
 
 BOARD_HAVE_BLUETOOTH := true
-BOARD_CUSTOM_BLUEDROID := ../../../device/motorola/jordan/bluedroid.c
+BOARD_CUSTOM_BLUEDROID := ../../../device/motorola/jordan_plus/bluedroid.c
 
 BOARD_MASS_STORAGE_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun0/file"
 
@@ -96,7 +96,7 @@ BOARD_BOOTMODE_CONFIG_FILE := /cache/recovery/bootmode.conf
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
-BOARD_CUSTOM_RECOVERY_KEYMAPPING:= ../../device/motorola/jordan/recovery_ui.c
+BOARD_CUSTOM_RECOVERY_KEYMAPPING:= ../../device/motorola/jordan_plus/recovery_ui.c
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_RECOVERY_IGNORE_BOOTABLES := true
 BOARD_HAS_SMALL_RECOVERY := true
@@ -114,7 +114,7 @@ BOARD_NEVER_UMOUNT_SYSTEM := true
 #TARGET_RECOVERY_UPDATER_LIBS += librecovery_updater_generic
 
 # Override cyanogen squisher to customize our update zip package
-TARGET_CUSTOM_RELEASETOOL := ./device/motorola/jordan/releasetools/squisher
+TARGET_CUSTOM_RELEASETOOL := ./device/motorola/jordan_plus/releasetools/squisher
 
 # Jordan need 2nd-init binary from motorola common
 TARGET_NEEDS_MOTOROLA_HIJACK := true
