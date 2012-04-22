@@ -25,6 +25,7 @@ PRODUCT_COPY_FILES += \
 #etc
 PRODUCT_COPY_FILES += \
 	device/motorola/jordan_plus/bootmenu/recovery/recovery.fstab:system/etc/recovery.fstab \
+	device/motorola/jordan_plus/prebuilt/etc/init.d/00baseband:system/etc/init.d/00baseband \
 	device/motorola/jordan_plus/prebuilt/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
 	device/motorola/jordan_plus/prebuilt/etc/init.d/03adbd:system/etc/init.d/03adbd \
 	device/motorola/jordan_plus/prebuilt/etc/init.d/05mountsd:system/etc/init.d/05mountsd \
@@ -51,9 +52,5 @@ ifdef CYANOGEN_RELEASE
 else
     PRODUCT_COPY_FILES += device/motorola/jordan_plus/releasetools/custom_backup_list.txt:system/etc/custom_backup_list.txt
 endif
-
-# App
-PRODUCT_COPY_FILES += \
-	device/motorola/jordan_plus/prebuilt/app/basebandswitcherV4.0.apk:system/app/basebandswitcherV4.0.apk \
 
 #end of jordan-blobs.mk
