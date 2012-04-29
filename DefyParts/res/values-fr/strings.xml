@@ -62,7 +62,6 @@
     <string name="baseband_version">Version</string>
     <string name="baseband_frequencies">Fréquences: %1$s MHz</string>
     <string name="unknown">Inconnu</string>
->>>>>>> 9c3c5e4... DefyParts: french update for the new baseband switcher
 
     <string name="yes">Oui</string>
     <string name="no">Non</string>
