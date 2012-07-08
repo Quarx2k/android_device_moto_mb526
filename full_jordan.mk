@@ -22,11 +22,17 @@
 #
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-$(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
 $(call inherit-product, device/motorola/jordan_plus/jordan.mk)
-# Also get non-open-source files if available
-$(call inherit-product-if-exists, vendor/motorola/jordan_plus/jordan-vendor.mk)
+$(call inherit-product, vendor/motorola/jordan_plus/jordan-vendor.mk)
+
+# recovery tools
+PRODUCT_COPY_FILES += \
+	out/target/product/jordan_plus/recovery/root/sbin/tune2fs:system/bootmenu/recovery/sbin/tune2fs \
+	out/target/product/jordan_plus/recovery/root/sbin/e2fsck:system/bootmenu/recovery/sbin/e2fsck \
+	out/target/product/jordan_plus/recovery/root/sbin/tune2fs:system/bootmenu/recovery/sbin/tune2fs \
+	out/target/product/jordan_plus/recovery/root/sbin/mke2fs:system/bootmenu/recovery/sbin/mke2fs.bin \
+	out/target/product/jordan_plus/recovery/root/sbin/pigz:system/bootmenu/recovery/sbin/pigz \
+
 
 PRODUCT_NAME := full_jordan_plus
 PRODUCT_DEVICE := jordan_plus

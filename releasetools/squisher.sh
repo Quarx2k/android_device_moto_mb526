@@ -27,7 +27,7 @@ cp $REPACK/ota/system/etc/terminfo/l/linux $REPACK/ota/system/etc/terminfo/x/xte
 
 rm -f $REPACK/ota/boot.img
 
-cp -f $DEVICE_TOP/updater-script $REPACK/ota/META-INF/com/google/android/updater-script
+cp -f $DEVICE_COMMON/updater-script $REPACK/ota/META-INF/com/google/android/updater-script
 
 # Opensource init binary
 cp -f $DEVICE_OUT/root/init $REPACK/ota/system/bootmenu/2nd-init/init
@@ -35,7 +35,7 @@ cp -f $DEVICE_OUT/root/init $REPACK/ota/system/bootmenu/2nd-init/init
 # Use a prebuilt adbd configured for root access instead of normal one, for dev purpose
 cp -f $REPACK/ota/system/bootmenu/binary/adbd $REPACK/ota/system/bin/adbd
 
-cp -f $DEVICE_TOP/bootmenu/binary/2nd-init $REPACK/ota/system/bootmenu/binary/2nd-init
+cp -f $DEVICE_COMMON/bootmenu/binary/2nd-init $REPACK/ota/system/bootmenu/binary/2nd-init
 
 # use the static busybox as bootmenu shell, and some static utilities
 cp -f $DEVICE_OUT/utilities/busybox $REPACK/ota/system/bootmenu/binary/busybox
