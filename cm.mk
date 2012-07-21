@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011 The Android Open-Source Project
+# Copyright (C) 2012 The Android Open-Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,15 +20,17 @@ $(call inherit-product-if-exists, vendor/cm/config/common_full_phone.mk)
 $(call inherit-product-if-exists, vendor/cm/config/gsm.mk)
 $(call inherit-product, device/moto/mb526/full_jordan.mk)
 
-PRODUCT_NAME := cm_jordan_plus
+DEVICE_PACKAGE_OVERLAYS += device/moto/mb526/overlay
+
+PRODUCT_NAME := cm_mb526
 PRODUCT_BRAND := MOTO
-PRODUCT_DEVICE := jordan_plus
+PRODUCT_DEVICE := mb526
 PRODUCT_MODEL := MB526
 PRODUCT_MANUFACTURER := Motorola
 PRODUCT_SFX := DFP
 
 # Release name and versioning
-    PRODUCT_RELEASE_NAME := Defy+
+PRODUCT_RELEASE_NAME := Defy+
 
 UTC_DATE := $(shell date +%s)
 DATE     := $(shell date +%Y%m%d)

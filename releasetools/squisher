@@ -7,7 +7,7 @@
 echo "DEFY SQUISHER"
 echo "================"
 
-DEVICE_OUT=$ANDROID_BUILD_TOP/out/target/product/jordan_plus
+DEVICE_OUT=$ANDROID_BUILD_TOP/out/target/product/mb526
 DEVICE_TOP=$ANDROID_BUILD_TOP/device/moto/mb526
 VENDOR_TOP=$ANDROID_BUILD_TOP/vendor/motorola/jordan_plus
 DEVICE_COMMON=$ANDROID_BUILD_TOP/device/moto/jordan-common
