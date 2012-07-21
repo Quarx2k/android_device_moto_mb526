@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Custom Repository URL for nightly rom updates -->
+<resources>
+	<string name="app_name">Defy ROM Updater</string>
+	<string name="reposerver_url">http://quarx2k.ru/.rom/json_cm10.php?p=MB526</string>
+	<string name="statserver_url">http://tanguy.ath.cx/romupdater/stats.php</string>
+	<string name="all_repos_url">http://tanguy.ath.cx/romupdater/repositories.php</string>
+</resources>
