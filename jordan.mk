@@ -24,6 +24,6 @@ $(call inherit-product, device/moto/jordan-common/device.mk)
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.url.safetylegal=http://www.motorola.com/staticfiles/Support/legal/?model=MB526 \
+	ro.url.safetylegal=http://www.motorola.com/staticfiles/Support/legal/?model=MB525 \
 
 
