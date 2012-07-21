@@ -102,16 +102,17 @@ cd $REPACK
 
 # Strip modules
 [ -d $REPACK/ota/system/lib/modules ] && \
-	find $REPACK/ota/system/lib/modules -name "*.ko" -not -name "overclock*" -print0 | xargs -0 arm-eabi-strip --strip-unneeded
+	find $REPACK/ota/system/lib/modules -name "*.ko" \
+		-not -name "tiap*" -print0 | xargs -0 arm-eabi-strip --strip-unneeded
 
 # Determine what to name the new signed package
-MODVERSION=`sed -n -e'/ro\.modversion/s/^.*=//p' $REPACK/ota/system/build.prop`
-: ${MODVERSION:=nightly}
-
-OUTFILE=$OUT/update-cm-$MODVERSION-signed.zip
+MODVERSION=`sed -n -e'/ro\.cm.version/s/^.*=//p' $REPACK/ota/system/build.prop`
+MODVERSION=`echo $MODVERSION | sed -r 's/CyanogenMod-//'`
+OUTFILE=$OUT/cm-$MODVERSION.zip
 
 if [ -n "$CM_NIGHTLY" ]; then
 	MODVERSION=`sed -n -e'/ro\.modversion/s/^.*=//p' $REPACK/ota/system/build.prop`
+	MODVERSION=`echo $MODVERSION | sed -r 's/CyanogenMod-//'`
 	OUTFILE=$OUT/CM$MODVERSION.zip
 fi
 
@@ -131,20 +132,19 @@ rm -rf $REPACK
 echo
 
 # Create a md5 checksum image of the repacked package
-(
 img=`basename $OUTFILE`
 cd `dirname $OUTFILE`
 $MD5 $img >$img.md5sum
-echo
-echo -e ${CL_INS}"Package complete: $OUTFILE" ${CL_RST}
-cat $img.md5sum
-echo
+
 # Build date and current time:
 cat $OUT/system/build.prop | grep ro.build.date=
 ls -l $OUTFILE
+cat $img.md5sum
 echo
-)
+echo ${CL_INS}"Package complete: $OUTFILE" ${CL_RST}
+echo
 
+# Addons packages, if any
 if [ -x $DEVICE_TOP/releasetools/addons ]; then
 	$DEVICE_TOP/releasetools/addons kernel
 #	$DEVICE_TOP/releasetools/addons bootmenu
