@@ -45,3 +45,5 @@ cp -f $DEVICE_OUT/utilities/lsof $REPACK/ota/system/bootmenu/binary/lsof
 # ril fix
 cp -f $REPACK/ota/system/lib/hw/audio.a2dp.default.so $REPACK/ota/system/lib/liba2dp.so
 
+# battd
+cp -f $VENDOR_TOP/bin/battd_plus $REPACK/ota/system/bin/battd

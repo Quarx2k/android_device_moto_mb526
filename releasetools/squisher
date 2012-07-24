@@ -9,7 +9,7 @@ echo "================"
 
 DEVICE_OUT=$ANDROID_BUILD_TOP/out/target/product/mb526
 DEVICE_TOP=$ANDROID_BUILD_TOP/device/moto/mb526
-VENDOR_TOP=$ANDROID_BUILD_TOP/vendor/motorola/jordan_plus
+VENDOR_TOP=$ANDROID_BUILD_TOP/vendor/motorola/jordan-common
 DEVICE_COMMON=$ANDROID_BUILD_TOP/device/moto/jordan-common
 
 CL_PFX="\033[33m"
