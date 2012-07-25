@@ -25,5 +25,10 @@ $(call inherit-product, device/moto/jordan-common/device.mk)
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.url.safetylegal=http://www.motorola.com/staticfiles/Support/legal/?model=MB525 \
+	ro.media.capture.maxres=5m \
+	ro.media.capture.flash=led \
+	ro.media.capture.flashIntensity=41 \
+	ro.media.capture.torchIntensity=25 \
+	ro.media.capture.classification=classE
 
 
