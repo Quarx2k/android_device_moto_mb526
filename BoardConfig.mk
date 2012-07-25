@@ -26,6 +26,7 @@
 
 # Model variant (DEFY_FROYO, DEFY_GINGER, DEFY_PLUS)
 BOARD_DEFY_MODEL := DEFY_PLUS
+TARGET_USE_JORDAN_COMMON := true
 TARGET_CUSTOM_RELEASETOOL := ./device/moto/mb526/releasetools/squisher
 
 # Use the part that is common between all allwinner
