@@ -29,8 +29,8 @@ PRODUCT_COPY_FILES += $(shell test -d vendor/motorola/jordan_plus/lib/modules &&
 	find vendor/motorola/jordan_plus/lib/modules -name '*.ko' \
 	-printf '%p:system/lib/modules/%f ')
 
-PRODUCT_NAME := full_jordan_plus
-PRODUCT_DEVICE := jordan_plus
+PRODUCT_NAME := full_mb526
+PRODUCT_DEVICE := mb526
 PRODUCT_BRAND := Android
 PRODUCT_MODEL := MB526
 PRODUCT_MANUFACTURER := motorola
