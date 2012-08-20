@@ -75,6 +75,9 @@ hwui.use.blacklist=true
 # CpuGovernorService (require ondemand cpu governor)
 dev.pm.dyn_samplingrate=1
 
+dalvik.vm.heapstartsize=5m
+dalvik.vm.heapsize=48m
+
 #=========================================================================================
 # Note about persist.xxx properties :
 #
