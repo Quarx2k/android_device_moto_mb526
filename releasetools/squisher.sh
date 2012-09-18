@@ -22,16 +22,21 @@ chmod +x $REPACK/ota/system/bin/mount_ext3.sh
 mkdir -p $REPACK/ota/system/etc/terminfo/x
 cp $REPACK/ota/system/etc/terminfo/l/linux $REPACK/ota/system/etc/terminfo/x/xterm
 
+# add files needed by bootmenu that normally live in initrd
+cp -f $DEVICE_OUT/utilities/busybox $REPACK/ota/system/bootmenu/binary/busybox
+cp -f $DEVICE_OUT/root/sbin/adbd $REPACK/ota/system/bootmenu/binary/adbd
+cp -f $DEVICE_OUT/recovery/root/sbin/tune2fs $REPACK/ota/system/bootmenu/recovery/sbin/tune2fs
+
 # prebuilt boot, devtree, logo & updater-script
 rm -f $REPACK/ota/boot.img
-cp -f $DEVICE_TOP/releasetools/updater-script $REPACK/ota/META-INF/com/google/android/updater-script
+cp -f $DEVICE_COMMON/releasetools/updater-script $REPACK/ota/META-INF/com/google/android/updater-script
 
 # keep multiboot specific files, if installed
 cat $DEVICE_TOP/releasetools/multiboot_backup_list.txt >> $REPACK/ota/system/etc/custom_backup_list.txt
 
 # release builds contains a kernel, and do not backup kernel modules
 #if [ -n "$CYANOGEN_RELEASE" ]; then
-  cat $DEVICE_TOP/releasetools/updater-script-rel >> $REPACK/ota/META-INF/com/google/android/updater-script
+  cat $DEVICE_COMMON/releasetools/updater-script-rel >> $REPACK/ota/META-INF/com/google/android/updater-script
   cp -f $VENDOR_TOP/boot-234-134.smg $REPACK/ota/boot.img
   cp -f $VENDOR_TOP/devtree-234-134.smg $REPACK/ota/devtree.img
   cp -f $VENDOR_TOP/logo-moto.raw $REPACK/ota/logo.img

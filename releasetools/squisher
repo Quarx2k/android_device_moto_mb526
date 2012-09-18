@@ -9,6 +9,7 @@ echo "================"
 
 DEVICE_OUT=$ANDROID_BUILD_TOP/out/target/product/jordan_plus
 DEVICE_TOP=$ANDROID_BUILD_TOP/device/motorola/jordan_plus
+DEVICE_COMMON=$ANDROID_BUILD_TOP/device/motorola/jordan-common
 VENDOR_TOP=$ANDROID_BUILD_TOP/vendor/motorola/jordan_plus
 
 OUT_TARGET_HOST=`uname -a | grep Darwin`
