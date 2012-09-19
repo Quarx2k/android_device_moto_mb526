@@ -40,7 +40,7 @@ if [ -n "$CYANOGEN_RELEASE" ]; then
   cp -f $VENDOR_TOP/boot-234-134.smg $REPACK/ota/boot.img
   cp -f $VENDOR_TOP/devtree-234-134.smg $REPACK/ota/devtree.img
   cp -f $VENDOR_TOP/logo-moto.raw $REPACK/ota/logo.img
-#fi
+fi
 
 cp -f $DEVICE_OUT/root/init $REPACK/ota/system/bootmenu/2nd-init/init
 cp -f $DEVICE_OUT/root/init.rc $REPACK/ota/system/bootmenu/2nd-init/init.rc
