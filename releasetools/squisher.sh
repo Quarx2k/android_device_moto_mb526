@@ -35,7 +35,7 @@ cp -f $DEVICE_COMMON/releasetools/updater-script $REPACK/ota/META-INF/com/google
 cat $DEVICE_TOP/releasetools/multiboot_backup_list.txt >> $REPACK/ota/system/etc/custom_backup_list.txt
 
 # release builds contains a kernel, and do not backup kernel modules
-#if [ -n "$CYANOGEN_RELEASE" ]; then
+if [ -n "$CYANOGEN_RELEASE" ]; then
   cat $DEVICE_COMMON/releasetools/updater-script-rel >> $REPACK/ota/META-INF/com/google/android/updater-script
   cp -f $VENDOR_TOP/boot-234-134.smg $REPACK/ota/boot.img
   cp -f $VENDOR_TOP/devtree-234-134.smg $REPACK/ota/devtree.img
