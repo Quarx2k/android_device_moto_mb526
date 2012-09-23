@@ -45,3 +45,5 @@ fi
 cp -f $DEVICE_OUT/root/init $REPACK/ota/system/bootmenu/2nd-init/init
 cp -f $DEVICE_OUT/root/init.rc $REPACK/ota/system/bootmenu/2nd-init/init.rc
 
+# Media profiles with HD rec.
+cp -f $DEVICE_TOP/media_profiles.xml $REPACK/ota/system/etc/media_profiles.xml
