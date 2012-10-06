@@ -31,12 +31,14 @@ rm -f $REPACK/ota/boot.img
 cp -f $DEVICE_COMMON/updater-script $REPACK/ota/META-INF/com/google/android/updater-script
 
 # Opensource init binary
-cp -f $DEVICE_OUT/root/init $REPACK/ota/system/bootmenu/2nd-init/init
+#cp -f $DEVICE_OUT/root/init $REPACK/ota/system/bootmenu/2nd-init/init
+
+# Copy kernel & ramdisk
+cp -f $DEVICE_OUT/kernel $REPACK/ota/system/bootmenu/2nd-boot/kern
+cp -f $DEVICE_OUT/ramdisk.img $REPACK/ota/system/bootmenu/2nd-boot/ramdisk
 
 # Use a prebuilt adbd configured for root access instead of normal one, for dev purpose
 cp -f $REPACK/ota/system/bootmenu/binary/adbd $REPACK/ota/system/bin/adbd
-
-cp -f $REPACK/ota/system/bootmenu/binary/2nd-init $REPACK/ota/system/bootmenu/binary/2nd-boot
 
 # use the static busybox as bootmenu shell, and some static utilities
 cp -f $DEVICE_OUT/utilities/busybox $REPACK/ota/system/bootmenu/binary/busybox
