@@ -6,43 +6,31 @@
 # DEVICE_TOP=$ANDROID_BUILD_TOP/device/moto/mb526
 # VENDOR_TOP=$ANDROID_BUILD_TOP/vendor/motorola/jordan_plus
 
-# Delete unwanted apps
+# Delete unwanted files
 rm -f $REPACK/ota/system/app/RomManager.apk
 rm -f $REPACK/ota/system/app/VideoEditor.apk
 rm -f $REPACK/ota/system/lib/libvideoeditor*
-
-# Remove big videos
-rm -f $REPACK/ota/system/media/video/*.480p.mp4
-
-# these scripts are not required or bad
+rm -f $REPACK/ota/system/lib/hw/*goldfish*
+rm -f $REPACK/ota/system/media/video/*
 rm -f $REPACK/ota/system/etc/init.d/04modules
+rm -f $REPACK/ota/boot.img
 
 # add an empty script to prevent logcat errors (moto init.rc)
 touch $REPACK/ota/system/bin/mount_ext3.sh
 chmod +x $REPACK/ota/system/bin/mount_ext3.sh
 
-mkdir -p $REPACK/ota/system/etc/terminfo/x
-cp $REPACK/ota/system/etc/terminfo/l/linux $REPACK/ota/system/etc/terminfo/x/xterm
-
-# prebuilt boot, devtree, logo & updater-script
-
-rm -f $REPACK/ota/boot.img
-
+# Copy custom update-script
 cp -f $DEVICE_COMMON/updater-script $REPACK/ota/META-INF/com/google/android/updater-script
-
-# Opensource init binary
-#cp -f $DEVICE_OUT/root/init $REPACK/ota/system/bootmenu/2nd-init/init
 
 # Copy kernel & ramdisk
 cp -f $DEVICE_OUT/kernel $REPACK/ota/system/bootmenu/2nd-boot/zImage
 cp -f $DEVICE_OUT/ramdisk.img $REPACK/ota/system/bootmenu/2nd-boot/ramdisk
 
-# Use a prebuilt adbd configured for root access instead of normal one, for dev purpose
-cp -f $REPACK/ota/system/bootmenu/binary/adbd $REPACK/ota/system/bin/adbd
-
 # use the static busybox as bootmenu shell, and some static utilities
+mkdir -p $REPACK/ota/system/etc/terminfo/x
 cp -f $DEVICE_OUT/utilities/busybox $REPACK/ota/system/bootmenu/binary/busybox
 cp -f $DEVICE_OUT/utilities/lsof $REPACK/ota/system/bootmenu/binary/lsof
+cp $REPACK/ota/system/etc/terminfo/l/linux $REPACK/ota/system/etc/terminfo/x/xterm
 
 # ril fix
 cp -f $REPACK/ota/system/lib/hw/audio.a2dp.default.so $REPACK/ota/system/lib/liba2dp.so
