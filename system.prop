@@ -77,5 +77,7 @@ persist.sys.charge_led=white
 persist.sys.button_brightness=100
 # use default multitouch configuration
 persist.sys.multitouch=2
+# enable ADB
+persist.service.adb.enable=1
 #=========================================================================================
 
