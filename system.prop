@@ -60,6 +60,9 @@ dev.pm.dyn_samplingrate=1
 dalvik.vm.heapstartsize=5m
 dalvik.vm.heapsize=48m
 
+# Default usb config 
+persist.sys.usb.config=mass_storage,adb
+
 #=========================================================================================
 # Note about persist.xxx properties :
 #
