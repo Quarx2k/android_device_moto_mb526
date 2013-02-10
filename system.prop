@@ -45,9 +45,6 @@ jpeg.libskiahw.encoder.enable=0
 # Forbid format of these partitions in mount menu :
 ro.cwm.forbid_format=/misc,/devtree,/config,/boot,/recovery,/pds,/system
 
-# Tell UsbService that we're using Usb.apk
-ro.usb.use_custom_service=1
-
 # use 1% battery steps
 persist.sys.one_percent_batt=1
 
