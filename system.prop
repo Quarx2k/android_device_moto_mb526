@@ -62,6 +62,9 @@ dev.pm.dyn_samplingrate=1
 dalvik.vm.heapstartsize=5m
 dalvik.vm.heapsize=48m
 
+# HW Random generator
+persist.sys.rngd_service=0
+
 #=========================================================================================
 # Note about persist.xxx properties :
 #
