@@ -39,7 +39,7 @@ ro.opengles.version = 131072
 ro.cwm.forbid_format=/misc,/devtree,/config,/boot,/recovery,/pds,/system
 
 # use 1% battery steps
-persist.sys.one_percent_batt=1
+ro.product.use_charge_counter=1
 
 #Place files named by process names in /data/local/hwui.allow/ (or use HWA Selector app)
 hwui.use.blacklist=true
