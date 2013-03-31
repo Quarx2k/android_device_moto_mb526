@@ -17,6 +17,7 @@
 #
 # This is the product configuration for a generic Motorola Defy (jordan)
 #
+device_path = device/moto/mb526
 
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
@@ -31,4 +32,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.media.capture.torchIntensity=25 \
 	ro.media.capture.classification=classE
 
-
+PRODUCT_COPY_FILES += \
+	${device_path}/media_profiles.xml:system/etc/media_profiles.xml \
