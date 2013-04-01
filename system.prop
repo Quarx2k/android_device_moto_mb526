@@ -45,7 +45,7 @@ persist.sys.one_percent_batt=1
 hwui.use.blacklist=true
 
 dalvik.vm.heapstartsize=5m
-dalvik.vm.heapsize=48m
+dalvik.vm.heapsize=78m
 
 # Default usb config 
 persist.sys.usb.config=mass_storage,adb
