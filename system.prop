@@ -58,7 +58,7 @@ hwui.use.blacklist=true
 dev.pm.dyn_samplingrate=1
 
 dalvik.vm.heapstartsize=5m
-dalvik.vm.heapsize=48m
+dalvik.vm.heapsize=78m
 
 #=========================================================================================
 # Note about persist.xxx properties :
