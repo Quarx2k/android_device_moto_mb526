@@ -28,6 +28,7 @@
 BOARD_DEFY_MODEL := DEFY_PLUS
 TARGET_USE_JORDAN_COMMON := true
 TARGET_CUSTOM_RELEASETOOL := ./device/moto/mb526/releasetools/squisher
+TARGET_KERNEL_CONFIG  := mb526_cm10_defconfig
 
 # Use the part that is common between all allwinner
 include device/moto/jordan-common/BoardConfig.mk
