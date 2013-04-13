@@ -94,14 +94,14 @@
 
         <EncoderProfile quality="high" fileFormat="mp4" duration="30">
             <Video codec="m4v"
-                   bitRate="6000000"
+                   bitRate="10000000"
                    width="848"
                    height="480"
                    frameRate="24" />
 
             <Audio codec="aac"
                    bitRate="96000"
-                   sampleRate="16000"
+                   sampleRate="24000"
                    channels="1" />
         </EncoderProfile>
 
@@ -225,7 +225,7 @@
         minFrameRate="1" maxFrameRate="30" />
 
     <VideoEncoderCap name="m4v" enabled="true"
-        minBitRate="64000" maxBitRate="8000000"
+        minBitRate="64000" maxBitRate="10000000"
         minFrameWidth="176" maxFrameWidth="1280"
         minFrameHeight="144" maxFrameHeight="720"
         minFrameRate="1" maxFrameRate="30" />
