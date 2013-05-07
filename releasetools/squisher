@@ -82,6 +82,16 @@ $SED -i \
 # No need for recovery
 rm -rf $REPACK/ota/recovery
 
+# Delete unwanted files
+echo "Removing unwanted binaries..."
+rm -f $REPACK/ota/system/app/RomManager.apk
+rm -f $REPACK/ota/system/app/VideoEditor.apk
+rm -f $REPACK/ota/system/lib/libvideoeditor*
+rm -f $REPACK/ota/system/lib/hw/*goldfish*
+rm -f $REPACK/ota/system/media/video/*
+rm -f $REPACK/ota/system/etc/init.d/04modules
+rm -f $REPACK/ota/system/app/Torch.apk
+
 # Strip modules
 [ -d $REPACK/ota/system/lib/modules ] && \
 	find $REPACK/ota/system/lib/modules -name "*.ko" -print0 | xargs -0 arm-eabi-strip --strip-unneeded
