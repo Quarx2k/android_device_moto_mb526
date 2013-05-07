@@ -31,4 +31,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.media.capture.torchIntensity=25 \
 	ro.media.capture.classification=classE
 
+PRODUCT_COPY_FILES += \
+	${device_path}/media_profiles.xml:system/etc/media_profiles.xml \
 
