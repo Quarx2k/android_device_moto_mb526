@@ -46,7 +46,7 @@ jpeg.libskiahw.encoder.enable=0
 ro.cwm.forbid_format=/misc,/devtree,/config,/boot,/recovery,/pds,/system
 
 # Tell UsbService that we're using Usb.apk
-ro.usb.use_custom_service=1
+ro.usb.use_custom_service=0
 
 # use 1% battery steps
 persist.sys.one_percent_batt=1
@@ -62,6 +62,9 @@ dalvik.vm.heapsize=48m
 
 # HW Random generator
 persist.sys.rngd_service=0
+
+# Default usb config 
+persist.sys.usb.config=mass_storage,adb
 
 #=========================================================================================
 # Note about persist.xxx properties :
