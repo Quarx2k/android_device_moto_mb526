@@ -90,7 +90,6 @@ rm -f $REPACK/ota/system/lib/libvideoeditor*
 rm -f $REPACK/ota/system/lib/hw/*goldfish*
 rm -f $REPACK/ota/system/media/video/*
 rm -f $REPACK/ota/system/etc/init.d/04modules
-rm -f $REPACK/ota/system/app/Torch.apk
 
 # Strip modules
 [ -d $REPACK/ota/system/lib/modules ] && \
