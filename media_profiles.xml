@@ -79,7 +79,7 @@
     <!-- Each camcorder profile defines a set of predefined configuration parameters -->
     <CamcorderProfiles cameraId="0">
 
-    <!--        <EncoderProfile quality="720p" fileFormat="mp4" duration="30">
+        <EncoderProfile quality="720p" fileFormat="mp4" duration="30">
             <Video codec="m4v"
                    bitRate="10000000"
                    width="1280"
@@ -87,10 +87,10 @@
                    frameRate="24" />
 
             <Audio codec="aac"
-                   bitRate="96000"
+                   bitRate="32000"
                    sampleRate="16000"
                    channels="1" />
-        </EncoderProfile> -->
+        </EncoderProfile>
 
         <EncoderProfile quality="high" fileFormat="mp4" duration="30">
             <Video codec="m4v"
@@ -100,8 +100,8 @@
                    frameRate="24" />
 
             <Audio codec="aac"
-                   bitRate="96000"
-                   sampleRate="24000"
+                   bitRate="32000"
+                   sampleRate="16000"
                    channels="1" />
         </EncoderProfile>
 
@@ -113,8 +113,8 @@
                    frameRate="24" />
 
             <Audio codec="aac"
-                   bitRate="96000"
-                   sampleRate="44100"
+                   bitRate="32000"
+                   sampleRate="16000"
                    channels="1" />
         </EncoderProfile>
 
@@ -125,7 +125,7 @@
                    height="288"
                    frameRate="24" />
             <Audio codec="aac"
-                   bitRate="96000"
+                   bitRate="32000"
                    sampleRate="16000"
                    channels="1" />
         </EncoderProfile>
