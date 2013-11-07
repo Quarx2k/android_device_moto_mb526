@@ -22,6 +22,7 @@ device_path = device/moto/mb526
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 $(call inherit-product, device/moto/jordan-common/device.mk)
+$(call inherit-product, vendor/motorola/jordan-common/jordan-vendor.mk)
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 PRODUCT_PROPERTY_OVERRIDES += \
