@@ -17,13 +17,13 @@
 #
 # This is the product configuration for a generic Motorola Defy (jordan)
 #
+$(call inherit-product, device/moto/jordan-common/jordan.mk)
+
 device_path = device/moto/mb526
+DEVICE_PACKAGE_OVERLAYS += device/moto/mb526/overlay
 
-# The gps config appropriate for this device
-$(call inherit-product, device/common/gps/gps_eu_supl.mk)
-$(call inherit-product, device/moto/jordan-common/device.mk)
+PRODUCT_PACKAGES += Torch
 
-## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.media.capture.maxres=5m \
 	ro.media.capture.flash=led \
@@ -32,6 +32,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.media.capture.classification=classE
 
 PRODUCT_COPY_FILES += \
-	${device_path}media_profiles_mb525.xml:system/etc/media_profiles_mb525.xml \
-	${device_path}media_profiles_mb526.xml:system/etc/media_profiles_mb526.xml \
+	${device_path}/media_profiles_mb525.xml:system/etc/media_profiles_mb525.xml \
+	${device_path}/media_profiles_mb526.xml:system/etc/media_profiles_mb526.xml \
 	${device_path}/devtree:system/bootstrap/2nd-boot/devtree \
+
+# Include non-opensource parts
+$(call inherit-product, vendor/motorola/jordan-common/jordan-vendor.mk)
+
