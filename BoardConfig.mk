@@ -29,6 +29,6 @@ include device/moto/jordan-common/BoardConfig.mk
 
 BOARD_DEFY_MODEL := DEFY_PLUS
 TARGET_USE_JORDAN_COMMON := true
-TARGET_KERNEL_CONFIG  := mb526_cm10.1_defconfig
+TARGET_KERNEL_CONFIG  := mapphone_defconfig
 
 
