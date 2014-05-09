@@ -32,10 +32,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.media.capture.classification=classE
 
 PRODUCT_COPY_FILES += \
-	${device_path}/media_profiles_mb525.xml:system/etc/media_profiles_mb525.xml \
-	${device_path}/media_profiles_mb526.xml:system/etc/media_profiles_mb526.xml \
+	${device_path}/media_profiles_mb526.xml:system/etc/media_profiles.xml \
 	${device_path}/devtree:system/bootstrap/2nd-boot/devtree \
 
+#${device_path}/media_profiles_mb525.xml:system/etc/media_profiles_mb525.xml
 # Include non-opensource parts
 $(call inherit-product, vendor/motorola/jordan-common/jordan-vendor.mk)
 
