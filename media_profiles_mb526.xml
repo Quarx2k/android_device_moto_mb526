@@ -80,7 +80,7 @@
     <CamcorderProfiles cameraId="0">
 
         <EncoderProfile quality="720p" fileFormat="mp4" duration="30">
-            <Video codec="m4v"
+            <Video codec="h264"
                    bitRate="10000000"
                    width="1280"
                    height="720"
@@ -93,7 +93,7 @@
         </EncoderProfile>
 
         <EncoderProfile quality="high" fileFormat="mp4" duration="30">
-            <Video codec="m4v"
+            <Video codec="h264"
                    bitRate="10000000"
                    width="848"
                    height="480"
@@ -106,9 +106,9 @@
         </EncoderProfile>
 
         <EncoderProfile quality="480p" fileFormat="mp4" duration="30">
-            <Video codec="m4v"
+            <Video codec="h264"
                    bitRate="4000000"
-                   width="640"
+                   width="848"
                    height="480"
                    frameRate="24" />
 
@@ -119,7 +119,7 @@
         </EncoderProfile>
 
         <EncoderProfile quality="cif" fileFormat="mp4" duration="30">
-            <Video codec="m4v"
+            <Video codec="h264"
                    bitRate="1200000"
                    width="352"
                    height="288"
