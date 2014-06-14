@@ -34,6 +34,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_COPY_FILES += \
 	${device_path}/media_profiles_mb526.xml:system/etc/media_profiles.xml \
 	${device_path}/devtree:system/bootstrap/2nd-boot/devtree \
+	${device_path}/devtree:system/bootstrap/2nd-boot/devtree-recovery
 
 #${device_path}/media_profiles_mb525.xml:system/etc/media_profiles_mb525.xml
 # Include non-opensource parts
