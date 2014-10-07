@@ -19,23 +19,17 @@
 #
 $(call inherit-product, device/moto/jordan-common/jordan.mk)
 
-device_path = device/moto/mb526
-DEVICE_PACKAGE_OVERLAYS += device/moto/mb526/overlay
+device_path = device/moto/mb52x
+DEVICE_PACKAGE_OVERLAYS += device/moto/mb52x/overlay
 
 PRODUCT_PACKAGES += Torch
 
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.media.capture.maxres=5m \
-	ro.media.capture.flash=led \
-	ro.media.capture.flashIntensity=41 \
-	ro.media.capture.torchIntensity=25 \
-	ro.media.capture.classification=classE
-
 PRODUCT_COPY_FILES += \
-	${device_path}/media_profiles_mb526.xml:system/etc/media_profiles.xml \
-	${device_path}/devtree:system/bootstrap/2nd-boot/devtree \
+	${device_path}/devtree_mb520:system/bootstrap/2nd-boot/devtree_mb520 \
+	${device_path}/devtree_mb526:system/bootstrap/2nd-boot/devtree_mb526 \
+	${device_path}/media_profiles_mb525.xml:system/etc/media_profiles_mb525.xml \
+	${device_path}/media_profiles_mb526.xml:system/etc/media_profiles_mb526.xml \
 
-#${device_path}/media_profiles_mb525.xml:system/etc/media_profiles_mb525.xml
 # Include non-opensource parts
 $(call inherit-product, vendor/motorola/jordan-common/jordan-vendor.mk)
 

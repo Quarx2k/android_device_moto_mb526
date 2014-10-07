@@ -78,7 +78,20 @@
 <MediaSettings>
     <!-- Each camcorder profile defines a set of predefined configuration parameters -->
     <CamcorderProfiles cameraId="0">
+<!-- 
+        <EncoderProfile quality="720p" fileFormat="mp4" duration="30">
+            <Video codec="m4v"
+                   bitRate="10000000"
+                   width="1280"
+                   height="720"
+                   frameRate="24" />
 
+            <Audio codec="aac"
+                   bitRate="32000"
+                   sampleRate="16000"
+                   channels="1" />
+        </EncoderProfile>
+-->
         <EncoderProfile quality="high" fileFormat="mp4" duration="30">
             <Video codec="m4v"
                    bitRate="10000000"
@@ -213,8 +226,8 @@
 
     <VideoEncoderCap name="m4v" enabled="true"
         minBitRate="64000" maxBitRate="10000000"
-        minFrameWidth="176" maxFrameWidth="848"
-        minFrameHeight="144" maxFrameHeight="480"
+        minFrameWidth="176" maxFrameWidth="1280"
+        minFrameHeight="144" maxFrameHeight="720"
         minFrameRate="1" maxFrameRate="30" />
 
     <AudioEncoderCap name="aac" enabled="true"

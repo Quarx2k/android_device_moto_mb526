@@ -13,32 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-$(call inherit-product, device/moto/mb526/full_mb526.mk)
-
-# Inherit some common CM stuff
-$(call inherit-product, vendor/cm/config/gsm.mk)
+$(call inherit-product, device/moto/mb52x/full_mb52x.mk)
 
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-PRODUCT_NAME := cm_mb526
-PRODUCT_BRAND := motorola
-PRODUCT_DEVICE := mb526
-PRODUCT_MODEL := MB526
-PRODUCT_MANUFACTURER := MOTO
-PRODUCT_RELEASE_NAME := Motorola Defy+
-PRODUCT_SFX := umts
-
-UTC_DATE := $(shell date +%s)
-DATE := $(shell date +%Y%m%d)
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
-   PRODUCT_NAME=${PRODUCT_DEVICE}_${PRODUCT_SFX} \
-   BUILD_NUMBER=${DATE} \
-   TARGET_DEVICE=${PRODUCT_DEVICE} \
-   BUILD_FINGERPRINT=${PRODUCT_BRAND}/${PRODUCT_DEVICE}_${PRODUCT_SFX}/${PRODUCT_DEVICE}:${PLATFORM_VERSION}/${BUILD_ID}/${DATE}:user/release-keys \
-   PRIVATE_BUILD_DESC="${PRODUCT_DEVICE}-user ${PLATFORM_VERSION} ${BUILD_ID} ${DATE} release-keys" \
-   PRODUCT_BRAND=${PRODUCT_BRAND} \
-   BUILD_UTC_DATE= \
-   PRODUCT_DEFAULT_LANGUAGE=en \
-   PRODUCT_DEFAULT_REGION=US \
+PRODUCT_RELEASE_NAME := MOTOROLA JORDAN
+PRODUCT_NAME := cm_mb52x

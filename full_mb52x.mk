@@ -21,11 +21,11 @@
 # lines, full and toro, hence its name.
 #
 
-# Inherit from mb526 device
-$(call inherit-product, device/moto/mb526/mb526.mk)
+# Inherit from mb52x device
+$(call inherit-product, device/moto/mb52x/mb52x.mk)
 
-PRODUCT_NAME := full_mb526
-PRODUCT_DEVICE := mb526
-PRODUCT_BRAND := Motorola
-PRODUCT_MODEL := Motorola Defy
-PRODUCT_MANUFACTURER := Motorola
+PRODUCT_NAME := full_mb52x
+PRODUCT_DEVICE := mb52x
+PRODUCT_BRAND := motorola
+PRODUCT_MODEL := jordan
+PRODUCT_MANUFACTURER := motorola

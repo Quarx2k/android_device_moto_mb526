@@ -26,9 +26,17 @@
 
 # inherit from common jordan
 include device/moto/jordan-common/BoardConfig.mk
+LOCAL_PATH := device/moto/jordan-common
 
-BOARD_DEFY_MODEL := DEFY_PLUS
-TARGET_USE_JORDAN_COMMON := true
+# Assert
+TARGET_OTA_ASSERT_DEVICE := mb526,mb520
+
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_omap3
+TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_omap3.c
+TARGET_UNIFIED_DEVICE := true
+
+
 TARGET_KERNEL_CONFIG  := mb526_cm10.1_defconfig
 
 
