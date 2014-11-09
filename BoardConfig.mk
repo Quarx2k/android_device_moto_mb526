@@ -37,6 +37,6 @@ TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_omap3.c
 TARGET_UNIFIED_DEVICE := true
 
 
-TARGET_KERNEL_CONFIG  := mb526_cm10.1_defconfig
+TARGET_KERNEL_CONFIG  := mapphone_defconfig
 
 
